@@ -1,0 +1,85 @@
+import React, { use, useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+
+function VerifyPage({ emailVal }) {
+  const [timeOut, setTimeOut] = useState(60);
+  const [resend, setResend] = useState(false);
+
+  useEffect(() => {
+    const storedTime = localStorage.getItem("resendEmailExpiry");
+    const now = Date.now();
+
+    if (storedTime && now < parseInt(storedTime)) {
+      const remaining = Math.floor((parseInt(storedTime) - now) / 1000);
+      setTimeOut(remaining);
+      setResend(false);
+    } else {
+      setTimeOut(0);
+      setResend(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    let timer;
+    if (timeOut > 0) {
+      timer = setTimeout(() => {
+        setTimeOut((prev) => prev - 1);
+      }, 1000);
+    } else {
+      setResend(true);
+    }
+    return () => clearTimeout(timer);
+  }, [timeOut]);
+  const handleResend = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/resend-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: emailVal }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert("Verification Email Resent");
+        const expiry = Date.now() + 60 * 1000; // 1 min later
+        localStorage.setItem("resendEmailExpiry", expiry.toString());
+        setTimeOut(60);
+        setResend(false);
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      toast.error("Resend Failed:", err);
+    }
+  };
+  return (
+    <>
+      <ToastContainer autoClose={5000} position="top-right"></ToastContainer>
+      <div className="pt-24 pb-8 flex justify-center bg-slate-50">
+        <div className="border-2 border-yellow-500 rounded-xl p-20 flex flex-col items-center">
+          <h1 className="text-xl">Almost There!</h1>
+          <h1 className="font-semibold text-base">
+            We’ve sent a verification link to your email.
+          </h1>
+          <h1 className="font-bebas text-2xl m-4">
+            Please click the link in your inbox to activate your account.
+          </h1>
+          <button
+            onClick={handleResend}
+            disabled={!resend}
+            className={`mt-6 px-5 py-2 text-white rounded ${
+              resend
+                ? "bg-blue-600 hover:bg-blue-700"
+                : "bg-gray-500 cursor-not-allowed"
+            }`}
+          >
+            {resend ? "Resend Mail" : `Resend mail in ${timeOut}s`}
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default VerifyPage;

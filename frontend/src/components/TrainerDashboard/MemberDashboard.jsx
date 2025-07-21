@@ -1,0 +1,65 @@
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/Context";
+import { memberDetail } from "../../services/MemberDetail";
+import MemberSection from "./MemberSection";
+import { ToastContainer } from "react-toastify";
+
+function MemberDashboard({ trainer_id }) {
+  const { trainerToken } = useContext(AuthContext);
+  const [member, setMember] = useState(0);
+  const [activeMember, setActiveMember] = useState(0);
+  const [renewalMember, setRenewalMember] = useState(0);
+  useEffect(() => {
+    const handleMemberDetail = async () => {
+      const response = await fetch(
+        `http://localhost:5000/api/member-detail-count/${trainer_id}`,
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${trainerToken}` },
+        }
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        toast.error("Error:", data.message);
+        return;
+      }
+      setActiveMember(data.activeMembersCount);
+      setMember(data.membersCount);
+      setRenewalMember(data.renewalMemberCount);
+    };
+    handleMemberDetail();
+  }, []);
+  const memberDetails = memberDetail(activeMember, member, renewalMember);
+  return (
+    <>
+      <ToastContainer autoClose={5000} position="top-right" />
+      <div className="my-4 grid grid-cols-3 gap-10 pr-16">
+        {memberDetails.map((val) => {
+          const Logo = val.logo;
+          return (
+            <div className="p-4 bg-white flex flex-col items-start hover:shadow-[0px_0px_10px_rgb(0,0,0,0.5)]">
+              <div className="flex justify-between w-full items-center">
+                <span className="font-semibold ">{val.boxName}</span>
+                <Logo />
+              </div>
+              <div
+                className={`font-bebas text-4xl mt-4 ${
+                  val.colorName === "green"
+                    ? "text-green-700"
+                    : val.colorName === "yellow"
+                    ? "text-yellow-600"
+                    : "text-black"
+                }`}
+              >
+                {val.mainCount}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <MemberSection trainer_id={trainer_id} />
+    </>
+  );
+}
+
+export default MemberDashboard;
