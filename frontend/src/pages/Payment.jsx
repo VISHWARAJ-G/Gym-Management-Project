@@ -40,7 +40,7 @@ function Payment() {
   const handlePayment = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/payment-gateway",
+        `${import.meta.env.VITE_API_BASE_URL}/api/payment-gateway`,
         {
           method: "POST",
           headers: {
@@ -63,7 +63,7 @@ function Payment() {
 
       try {
         const refreshResponse = await fetch(
-          "http://localhost:5000/api/refresh-token",
+          `${import.meta.env.VITE_API_BASE_URL}/api/refresh-token`,
           {
             method: "POST",
             headers: {

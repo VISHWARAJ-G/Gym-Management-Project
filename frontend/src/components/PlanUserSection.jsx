@@ -17,7 +17,7 @@ function PlanUserSection() {
     const paidUserFunc = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/paid-dashboard",
+          `${import.meta.env.VITE_API_BASE_URL}/api/paid-dashboard`,
           {
             method: "GET",
             headers: {
@@ -61,7 +61,7 @@ function PlanUserSection() {
   const handleDownloadInvoice = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/download-pdf/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/download-pdf/${id}`,
         {
           method: "GET",
           headers: {

@@ -12,16 +12,19 @@ export const userLoginMethod = async (
   e.preventDefault();
   setLoading(true);
   try {
-    const response = await fetch("http://localhost:5000/api/login-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: loginData.id,
-        password: loginData.password,
-      }),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/api/login-user`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: loginData.id,
+          password: loginData.password,
+        }),
+      }
+    );
     const data = await response.json();
     if (response.ok) {
       setLoading(false);
@@ -68,16 +71,19 @@ export const trainerLoginMethod = async (
   try {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch("http://localhost:5000/api/login-trainer", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        trainer_id: loginData.id,
-        password: loginData.password,
-      }),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/api/login-trainer`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          trainer_id: loginData.id,
+          password: loginData.password,
+        }),
+      }
+    );
     const data = await response.json();
     console.log(data);
 

@@ -20,12 +20,15 @@ function AdminOverview() {
 
   useEffect(() => {
     const fetchDetails = async () => {
-      const response = await fetch("http://localhost:5000/api/admin-details", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${adminToken}`,
-        },
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin-details`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        }
+      );
       const data = await response.json();
       if (!response.ok) {
         setError(data.message);
@@ -38,7 +41,8 @@ function AdminOverview() {
     };
     fetchDetails();
   }, []);
-  if (error) return <div className="text-2xl font-bebas text-center p-6">{error}</div>;
+  if (error)
+    return <div className="text-2xl font-bebas text-center p-6">{error}</div>;
 
   const gridBoxDetails = gridBoxes(
     totalMembers,

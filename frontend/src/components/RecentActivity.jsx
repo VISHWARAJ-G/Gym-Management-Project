@@ -9,7 +9,7 @@ function RecentActivity() {
     const recentFunc = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/recent-activity",
+          `${import.meta.env.VITE_API_BASE_URL}/api/recent-activity`,
           {
             method: "GET",
             headers: {
