@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendVerificationEmail = async (email, verification_token) => {
-  const verificationLink = `http://localhost:5173/verify-email/${verification_token}`;
+  const verificationLink = `${process.env.FRONTEND_URL}/verify-email/${verification_token}`;
   const mailOptions = {
     from: '"Evolve Gym" <no-reply@evolvegym.com>',
     to: email,
