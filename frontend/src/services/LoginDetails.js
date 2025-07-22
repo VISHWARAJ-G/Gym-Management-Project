@@ -10,7 +10,7 @@ export const userLoginMethod = async (
   setUser
 ) => {
   try {
-    const response = await fetch("http://localhost:5000/api/login-user", {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/login-user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ export const trainerLoginMethod = async (
     setMessage("");
     setError(false);
     setLoading(true);
-    const response = await fetch("http://localhost:5000/api/login-trainer", {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/login-trainer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

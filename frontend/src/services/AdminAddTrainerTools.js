@@ -21,7 +21,7 @@ export const handleSubmitFunc = async (
   if (Object.values(trainerForm).every(Boolean)) {
     setIsSubmitting(true);
     try {
-      const response = await fetch("http://localhost:5000/api/signup-trainer", {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/signup-trainer`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

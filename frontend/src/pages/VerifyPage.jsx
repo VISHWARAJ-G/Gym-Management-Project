@@ -32,13 +32,16 @@ function VerifyPage({ emailVal, setShowBurgerMenu }) {
   }, [timeOut]);
   const handleResend = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/resend-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: emailVal }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/resend-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: emailVal }),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
         alert("Verification Email Resent");

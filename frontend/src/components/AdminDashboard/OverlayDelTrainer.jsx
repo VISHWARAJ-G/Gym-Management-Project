@@ -14,7 +14,7 @@ function OverlayDelTrainer({ onClose, setDeleteSuccess, delTrainer }) {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/api/delete-trainer/${delTrainer.trainer_id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/delete-trainer/${delTrainer.trainer_id}`,
         {
           method: "DELETE",
           headers: {

@@ -18,19 +18,22 @@ function AdminMembers() {
 
   const handleUsersList = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/users-list", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${adminToken}`,
-        },
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/users-list`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        }
+      );
       const data = await response.json();
       if (!response.ok) {
         setError(data.message);
         return;
       }
       setUsers(data.userTrainer);
-      console.log("data.userTrainer:",data.userTrainer);
+      console.log("data.userTrainer:", data.userTrainer);
     } catch (errors) {
       setError("Error " + errors);
     }

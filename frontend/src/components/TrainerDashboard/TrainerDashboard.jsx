@@ -18,7 +18,7 @@ function TrainerDashboard() {
     const handleMemberCount = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/member-count/${trainer_id}`,
+          `${import.meta.env.VITE_API_BASE_URL}/api/member-count/${trainer_id}`,
           {
             method: "GET",
             headers: {

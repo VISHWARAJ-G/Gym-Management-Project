@@ -12,7 +12,7 @@ function MemberDashboard({ trainer_id, setShowBurgerMenu, showBurgerMenu }) {
   useEffect(() => {
     const handleMemberDetail = async () => {
       const response = await fetch(
-        `http://localhost:5000/api/member-detail-count/${trainer_id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/member-detail-count/${trainer_id}`,
         {
           method: "GET",
           headers: { Authorization: `Bearer ${trainerToken}` },
