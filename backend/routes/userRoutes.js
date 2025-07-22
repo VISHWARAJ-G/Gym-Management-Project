@@ -71,20 +71,6 @@ router.post("/signup-user", async (req, res) => {
       .json({ message: "Disposable email addresses are not allowed" });
   }
 
-  const mxValid = await isValidMX(email);
-  if (!mxValid) {
-    return res.status(400).json({
-      message: "Email domain does not support receiving emails",
-    });
-  }
-
-  const deliverable = await isInboxDeliverable(email);
-  if (!deliverable) {
-    return res.status(400).json({
-      message: "Email address is not deliverable or inbox doesn't exist",
-    });
-  }
-
   const { data: existingUser, error: findError } = await supabase
     .from("users")
     .select("email")

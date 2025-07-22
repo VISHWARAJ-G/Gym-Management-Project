@@ -10,7 +10,7 @@ function VerifyEmail() {
     const verifyToken = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/api/verify-email/${token}`
+          `http://localhost:5000/api/verify-email/${token}`
         );
         const data = await response.json();
 
@@ -37,15 +37,15 @@ function VerifyEmail() {
       <ToastContainer autoClose={5000} position="top-right"></ToastContainer>
       <div className="flex justify-center pt-24">
         {status === "Verifying" && (
-          <div className="text-2xl font-bebas animate-pulse">Loading...</div>
+          <div className="text-2xl font-bebas animate-pulse text-center">Loading...</div>
         )}
         {status === "Success" && (
-          <div className="text-2xl font-bebas animate-pulse">
+          <div className="text-2xl font-bebas animate-pulse text-center">
             Signup Successful, Shortly we'll redirect you to login page...
           </div>
         )}
         {status === "Error" && (
-          <div className="text-2xl font-bebas animate-pulse">
+          <div className="text-2xl font-bebas animate-pulse text-center">
             Invalid or Expired Link. Please signup again
           </div>
         )}

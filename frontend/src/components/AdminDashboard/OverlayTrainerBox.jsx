@@ -55,9 +55,7 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
       }
       try {
         const response = await fetch(
-          `${
-            import.meta.env.VITE_API_BASE_URL
-          }/api/update-trainers/${trainer_id}`,
+          `http://localhost:5000/api/update-trainers/${trainer_id}`,
           {
             method: "PATCH",
             headers: {

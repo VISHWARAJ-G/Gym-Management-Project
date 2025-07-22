@@ -95,9 +95,9 @@ function SignupForm() {
   };
   return (
     <form onSubmit={handleSubmission}>
-      <div className="grid grid-cols-2 gap-7">
-        <div className="flex flex-col gap-4" ref={fieldRef.name}>
-          <label htmlFor="Name" className="text-xl font-bold">
+      <div className="grid xs:grid-cols-2 grid-cols-1 gap-7">
+        <div className="flex flex-col md:gap-4 gap-1" ref={fieldRef.name}>
+          <label htmlFor="Name" className="md:text-xl text-base font-bold">
             Full Name *
           </label>
           <input
@@ -106,7 +106,7 @@ function SignupForm() {
             name="name"
             value={signupInfo.name}
             onChange={change}
-            className={`focus:outline-2 focus:outline-yellow-600 p-3 text-xl rounded-xl min-w-80 ${
+            className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base lg:min-w-80 ${
               errors.name
                 ? "border-4 border-red-600 animate-pulse"
                 : "border-2 border-slate-400"
@@ -119,9 +119,9 @@ function SignupForm() {
             </div>
           )}
         </div>
-        <div className="flex flex-col gap-4" ref={fieldRef.dob}>
-          <label htmlFor="DOB" className="text-xl font-bold">
-            DOB *
+        <div className="flex flex-col md:gap-4 gap-1" ref={fieldRef.dob}>
+          <label htmlFor="DOB" className="md:text-xl text-base font-bold">
+            Date of Birth *
           </label>
           <input
             type="date"
@@ -140,21 +140,24 @@ function SignupForm() {
               }
             }}
             id="DOB"
-            className={`focus:outline-2 focus:outline-yellow-600 p-3 text-xl rounded-xl min-w-80 ${
+            className={`focus:outline-2 focus:outline-yellow-600 p-[.2rem] px-2 md:text-xl text-base lg:min-w-80 ${
               errors.dob
                 ? "border-4 border-red-600 animate-pulse"
                 : "border-2 border-slate-400"
             }`}
           />
           {errors.dob && (
-            <div className="-mt-4 ml-2 text-red-600 animate-pulse">
+            <div className="lg:-mt-4 ml-2 text-red-600 animate-pulse">
               Data is not given properly
             </div>
           )}
         </div>
 
-        <div className="flex flex-col gap-4" ref={fieldRef.gender}>
-          <label htmlFor="Gender" className="text-xl font-bold">
+        <div
+          className="flex flex-col md:gap-4 gap-1 lg:-mb-5"
+          ref={fieldRef.gender}
+        >
+          <label htmlFor="Gender" className="md:text-xl text-base font-bold">
             Gender *
           </label>
           <select
@@ -162,7 +165,7 @@ function SignupForm() {
             name="gender"
             onChange={change}
             value={signupInfo.gender}
-            className={`focus:outline-2 focus:outline-yellow-600 p-3 text-xl rounded-xl min-w-80 ${
+            className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base lg:min-w-80 ${
               errors.gender
                 ? "border-4 border-red-600 animate-pulse"
                 : "border-2 border-slate-400"
@@ -176,13 +179,13 @@ function SignupForm() {
             <option value="Others">Others</option>
           </select>
           {errors.gender && (
-            <div className="-mt-4 ml-2 text-red-600 animate-pulse">
+            <div className="lg: ml-2 text-red-600 animate-pulse">
               Data is not given properly
             </div>
           )}
         </div>
-        <div className="flex flex-col gap-4">
-          <label htmlFor="Age" className="text-xl font-bold">
+        <div className="flex flex-col md:gap-4 gap-1">
+          <label htmlFor="Age" className="md:text-xl text-base font-bold">
             Age
           </label>
           <input
@@ -191,16 +194,16 @@ function SignupForm() {
             name="age"
             value={signupInfo.age || ""}
             readOnly
-            className="p-3 text-xl rounded-xl w-full border-2 border-gray-300 bg-gray-100 text-gray-600 cursor-not-allowed"
+            className="p-1 px-2 md:text-xl text-base w-full border-2 border-gray-300 bg-gray-100 text-gray-600 cursor-not-allowed"
           />
-          <div className="text-xs text-red-800 -mt-3">* Auto Calculated</div>
+          <div className="text-xs text-red-800 lg:-mt-3">* Auto Calculated</div>
         </div>
       </div>
       <div
-        className="flex flex-col gap-4 mt-1 items-start w-full"
+        className="flex flex-col md:gap-4 gap-1 mt-4 lg:mt-1 items-start w-full"
         ref={fieldRef.address}
       >
-        <label htmlFor="Address" className="text-xl font-bold">
+        <label htmlFor="Address" className="md:text-xl text-base font-bold">
           Address *
         </label>
         <textarea
@@ -208,8 +211,8 @@ function SignupForm() {
           value={signupInfo.address}
           onChange={change}
           id="Address"
-          placeholder="Enter your Address ( ex: Chennai,Tamilnadu )"
-          className={`w-full h-full focus:outline-2 focus:outline-yellow-600 p-5 text-xl rounded-xl ${
+          placeholder="Enter your Address "
+          className={`w-full h-full focus:outline-2 focus:outline-yellow-600 lg:p-5 p-1 px-2 md:text-xl text-base ${
             errors.address
               ? "border-4 border-red-600 animate-pulse"
               : "border-2 border-slate-400"
@@ -221,9 +224,9 @@ function SignupForm() {
           </div>
         )}
       </div>
-      <div className="grid grid-cols-2 gap-7 mt-6">
-        <div className="flex flex-col gap-4" ref={fieldRef.phone}>
-          <label htmlFor="Phone" className="text-xl font-bold">
+      <div className="grid xs:grid-cols-2 grid-cols-1 gap-7 mt-6">
+        <div className="flex flex-col md:gap-4 gap-1" ref={fieldRef.phone}>
+          <label htmlFor="Phone" className="md:text-xl text-base font-bold">
             Phone Number *
           </label>
           <input
@@ -232,7 +235,7 @@ function SignupForm() {
             name="phone"
             value={signupInfo.phone}
             onChange={phoneChange}
-            className={`focus:outline-2 focus:outline-yellow-600 p-3 text-xl rounded-xl ${
+            className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base ${
               errors.phone
                 ? "border-4 border-red-600 animate-pulse"
                 : "border-2 border-slate-400"
@@ -240,13 +243,13 @@ function SignupForm() {
             placeholder="Enter your number"
           />
           {errors.phone && (
-            <div className="-mt-4 ml-2 text-red-600 animate-pulse">
+            <div className="lg:-mt-4 ml-2 text-red-600 animate-pulse">
               Data is not given properly
             </div>
           )}
         </div>
-        <div className="flex flex-col gap-4" ref={fieldRef.email}>
-          <label htmlFor="Email" className="text-xl font-bold">
+        <div className="flex flex-col md:gap-4 gap-1" ref={fieldRef.email}>
+          <label htmlFor="Email" className="md:text-xl text-base font-bold">
             Email Address *
           </label>
           <input
@@ -255,7 +258,7 @@ function SignupForm() {
             name="email"
             value={signupInfo.email}
             onChange={change}
-            className={`focus:outline-2 focus:outline-yellow-600 p-3 text-xl rounded-xl ${
+            className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base ${
               errors.email
                 ? "border-4 border-red-600 animate-pulse"
                 : "border-2 border-slate-400"
@@ -263,13 +266,13 @@ function SignupForm() {
             placeholder="Enter your email"
           />
           {errors.email && (
-            <div className="-mt-4 ml-2 text-red-600 animate-pulse">
+            <div className="lg:-mt-4 ml-2 text-red-600 animate-pulse">
               Data is not given properly
             </div>
           )}
         </div>
-        <div className="flex flex-col gap-4" ref={fieldRef.password}>
-          <label htmlFor="Password" className="text-xl font-bold">
+        <div className="flex flex-col md:gap-4 gap-1" ref={fieldRef.password}>
+          <label htmlFor="Password" className="md:text-xl text-base font-bold">
             Password *
           </label>
           <input
@@ -278,7 +281,7 @@ function SignupForm() {
             name="password"
             value={signupInfo.password}
             onChange={patternCheck}
-            className={`focus:outline-2 focus:outline-yellow-600 p-3 text-xl rounded-xl ${
+            className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base ${
               errors.password
                 ? "border-4 border-red-600 animate-pulse"
                 : "border-2 border-slate-400"
@@ -288,7 +291,7 @@ function SignupForm() {
           {errors.password && (
             <div>
               <h1 className="text-red-600 animate-pulse duration-75">
-                Password must have the following things:
+                Password must have:
               </h1>
               <ul className="text-red-600 animate-pulse duration-75 list-disc ml-5">
                 <li>At least 8 characters</li>
@@ -298,8 +301,8 @@ function SignupForm() {
             </div>
           )}
         </div>
-        <div className="flex flex-col gap-4" ref={fieldRef.cpassword}>
-          <label htmlFor="CPassword" className="text-xl font-bold">
+        <div className="flex flex-col md:gap-4 gap-1" ref={fieldRef.cpassword}>
+          <label htmlFor="CPassword" className="md:text-xl text-base font-bold">
             Confirm Password *
           </label>
           <input
@@ -308,7 +311,7 @@ function SignupForm() {
             name="cpassword"
             value={signupInfo.cpassword}
             onChange={handleConfirmPasswordChange}
-            className={`focus:outline-2 focus:outline-yellow-600 p-3 text-xl rounded-xl min-w-80 ${
+            className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base lg:min-w-80 ${
               errors.cpassword
                 ? "border-4 border-red-600 animate-pulse"
                 : "border-2 border-slate-400"
@@ -318,7 +321,7 @@ function SignupForm() {
           {errors.cpassword && (
             <div>
               <h1 className="text-red-600 animate-pulse duration-75">
-                Passwords do not match
+                Passwords mismatch
               </h1>
             </div>
           )}
@@ -326,7 +329,7 @@ function SignupForm() {
       </div>
       <div>
         <button
-          className={`bg-gradient-to-r from-yellow-500 to-orange-500 group flex gap-2 p-4 mt-7 font-bold w-full justify-center text-2xl hover:scale-105 transition-all rounded-3xl`}
+          className={`bg-gradient-to-r from-yellow-500 to-orange-500 group flex gap-2 p-4 mt-7 font-bold w-full justify-center lg:text-2xl text-base hover:scale-105 transition-all rounded-3xl`}
         >
           Create Account{" "}
           <span className="inline-flex items-center">
@@ -335,12 +338,12 @@ function SignupForm() {
         </button>
       </div>
       {loading && (
-        <div className="pt-6 px-4 text-center font-bebas text-xl animate-pulse">
+        <div className="lg:pt-6 pt-3 px-4 text-center font-signika font-bold md:text-xl text-base animate-pulse">
           Loading...
         </div>
       )}
       {signupError && (
-        <div className="pt-6 px-4 text-center font-bebas text-xl">
+        <div className="lg:pt-6 pt-3 px-4 text-center font-signika font-bold md:text-xl text-base text-red-600 animate-pulse">
           {errorMsg || "Signup Error"}
         </div>
       )}

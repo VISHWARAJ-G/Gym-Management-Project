@@ -1,14 +1,11 @@
 export const handleUserDownloadFunc = async (adminToken) => {
   try {
-    const response = await fetch(
-      `${import.meta.env.VITE_API_BASE_URL}/api/download-users`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${adminToken}`,
-        },
-      }
-    );
+    const response = await fetch("http://localhost:5000/api/download-users", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${adminToken}`,
+      },
+    });
 
     if (!response.ok) {
       const errJson = await response.json();
@@ -34,7 +31,7 @@ export const handleUserDownloadFunc = async (adminToken) => {
 export const handleTrainerDownloadFunc = async (adminToken) => {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_API_BASE_URL}/api/download-trainers`,
+      "http://localhost:5000/api/download-trainers",
       {
         method: "GET",
         headers: {

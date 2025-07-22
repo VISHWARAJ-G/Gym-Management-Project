@@ -6,14 +6,14 @@ function Feature() {
   return (
     <section className="mx-5 my-16 flex flex-col items-center justify-center">
       <div>
-        <h1 className="font-bebas text-[2.8rem]">
+        <h1 className="font-bebas xs:text-4xl text-2xl text-center">
           POWERFUL FEATURES FOR YOUR GYM
         </h1>
       </div>
-      <div className="font-montserrat tracking-wider text-2xl text-gray-500 mt-2">
+      <div className="font-montserrat lg:text-2xl xs:text-lg text-sm text-gray-500 mt-2 text-center">
         Everything you need to manage and grow your fitness business
       </div>
-      <div className="m-10 grid grid-cols-3 gap-5">
+      <div className="m-10 grid lg:grid-cols-3 md:grid-cols-2 gap-5">
         {Features.map((val) => {
           const LogoName = val.logo;
           return (
@@ -29,7 +29,7 @@ function Feature() {
                   {val.name}
                 </h1>
               </div>
-              <div className="text-center text-xl text-gray-500">
+              <div className="text-center sm:text-xl text-sm text-gray-500">
                 <h1>{val.desc}</h1>
               </div>
             </div>

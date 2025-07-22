@@ -31,6 +31,12 @@ function LoginForm({ value }) {
   const [error, setError] = useState(false);
 
   const handleUserLogin = (e) => {
+    e.preventDefault();
+
+    setError(false);
+    setMessage("");
+    setLoading(true);
+
     userLoginMethod(
       e,
       loginData,
@@ -61,7 +67,7 @@ function LoginForm({ value }) {
   };
   const messageBox = useRef();
   useEffect(() => {
-    if (error) {
+    if (error || loading) {
       requestAnimationFrame(() => {
         messageBox.current?.scrollIntoView({
           behavior: "smooth",
@@ -69,35 +75,25 @@ function LoginForm({ value }) {
         });
       });
     }
-  }, [error]);
+  }, [error, loading]);
   return (
     <form
       className="mt-10"
       onSubmit={value === "User" ? handleUserLogin : handleTrainerLogin}
     >
-      {error ? (
-        <div className="flex justify-center">
-          <div
-            className="font-bebas tracking-wider text-center text-xl bg-red-700 text-white py-4 px-8 mb-6 animate-pulse rounded-full"
-            ref={messageBox}
-          >
+      <div className="flex justify-center" ref={messageBox}>
+        {error ? (
+          <div className="font-bebas tracking-wider text-center lg:text-xl text-base bg-red-700 text-white sm:py-4 py-2 xs:px-8 px-4 mb-6 animate-pulse rounded-full">
             {message}
           </div>
-        </div>
-      ) : (
-        loading && (
-          <div className="flex justify-center">
-            <div
-              className="font-bebas tracking-wider text-center text-xl bg-gradient-to-r from-blue-500 to-green-500 text-white py-4 px-8 mb-6 animate-pulse rounded-full"
-              ref={messageBox}
-            >
-              Loading...
-            </div>
+        ) : loading ? (
+          <div className="font-bebas tracking-wider text-center sm:text-xl text-base bg-gradient-to-r from-blue-500 to-green-500 text-white py-4 px-8 mb-6 animate-pulse rounded-full">
+            Loading...
           </div>
-        )
-      )}
-      <div className="flex flex-col items-start text-xl w-full font-semibold">
-        <div className="mb-3 font-bold text-xl">
+        ) : null}
+      </div>
+      <div className="flex flex-col items-start w-full font-semibold">
+        <div className="mb-3 font-bold sm:text-xl text-bas">
           <label htmlFor={labelFor}>{innerName}</label>
         </div>
         <input
@@ -107,11 +103,11 @@ function LoginForm({ value }) {
           id={labelFor}
           onChange={(e) => setLoginData({ ...loginData, id: e.target.value })}
           placeholder={`Enter your ${innerName}`}
-          className="w-full border-2 p-4 text-xl rounded-2xl focus:outline-2 outline-blue-500"
+          className="w-full border-2 p-4 sm:text-xl text-bas rounded-2xl focus:outline-2 outline-blue-500"
         />
       </div>
       <div className="flex flex-col items-start text-xl w-full font-semibold relative mt-3">
-        <div className="mb-3 font-bold text-xl">
+        <div className="mb-3 font-bold sm:text-xl text-base">
           <label htmlFor="Password">Password</label>
         </div>
         <input
@@ -123,7 +119,7 @@ function LoginForm({ value }) {
             setLoginData({ ...loginData, password: e.target.value })
           }
           placeholder="Enter your Password"
-          className="w-full border-2 p-4 rounded-2xl text-xl focus:outline-2 outline-blue-500"
+          className="w-full border-2 p-4 rounded-2xl sm:text-xl text-base focus:outline-2 outline-blue-500"
         />
         <div
           onClick={() => setShowPassword((prev) => !prev)}
@@ -133,7 +129,7 @@ function LoginForm({ value }) {
         </div>
       </div>
       <div>
-        <button className="bg-gradient-to-r from-yellow-500 to-orange-500 group flex gap-2 p-4 mt-7 font-bold w-full justify-center text-xl hover:scale-105 transition-all">
+        <button className="bg-gradient-to-r from-yellow-500 to-orange-500 group flex gap-2 p-4 mt-7 font-bold w-full justify-center sm:text-xl text-base hover:scale-105 transition-all">
           Login{" "}
           <span className="inline-flex items-center">
             <Arrow />
@@ -141,7 +137,7 @@ function LoginForm({ value }) {
         </button>
       </div>
       {value === "User" ? (
-        <div className="p-5 text-center text-xl text-gray-500">
+        <div className="p-5 text-center sm:text-xl text-base text-gray-500 xs:block flex flex-col items-center">
           Don't have an account?{" "}
           <span className="text-blue-900 font-semibold">
             <Link to={"/signup-user"}>Sign up here</Link>

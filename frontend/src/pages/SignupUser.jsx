@@ -3,30 +3,33 @@ import Logo from "../icons/Logo";
 import SignupForm from "../components/SignupForm";
 import { Link } from "react-router-dom";
 
-function SignupUser() {
+function SignupUser({ setShowBurgerMenu }) {
   return (
-    <div className="pt-24 bg-gray-100 w-full h-full pb-10">
-      <div className="flex flex-col items-center bg-white w-fit mx-auto p-10 rounded-2xl hover:shadow-[2px_2px_20px_rgb(0,0,0,0.5)] transition-all">
-        <div className="bg-gradient-to-r from-yellow-400 to-orange-500 p-4 rounded-3xl  hover:scale-110 transition-all duration-300">
+    <div
+      className="pt-24 bg-gray-100 w-full pb-10 px-4"
+      onClick={() => setShowBurgerMenu(false)}
+    >
+      <div className="flex flex-col items-center bg-white md:w-fit w-full md:mx-auto md:p-10 p-3 rounded-2xl hover:shadow-[2px_2px_20px_rgb(0,0,0,0.5)] transition-all">
+        <div className="bg-gradient-to-r from-yellow-400 to-orange-500 lg:p-4 p-2 lg:rounded-3xl rounded-xl  hover:scale-110 transition-all duration-300">
           <Logo mainBG={true} />
         </div>
         <div>
-          <h1 className="font-bebas text-3xl tracking-wider m-5">
+          <h1 className="font-bebas lg:text-3xl sm:text-xl text-base tracking-wider lg:m-5 mt-3">
             CREATE MEMBER ACCOUNT
           </h1>
         </div>
         <div>
-          <h1 className="text-yellow-600 text-2xl font-bold">
+          <h1 className="text-yellow-600 lg:text-2xl sm:text-lg text-base font-bold">
             Train. Transform. Triumph.
           </h1>
         </div>
         <div>
-          <h1 className="m-5 text-xl text-gray-500">
+          <h1 className="lg:m-5 sm:m-2 lg:text-xl mb-3 sm:text-base text-gray-500">
             Join the fitness revolution
           </h1>
         </div>
         <SignupForm />
-        <div className="mt-7 text-xl">
+        <div className="lg:mt-7 mt-2 lg:text-xl text-base">
           Already have an account?{" "}
           <Link to={"/login-user"} className="text-yellow-600 font-extrabold">
             Log in

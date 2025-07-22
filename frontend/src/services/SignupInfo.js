@@ -44,16 +44,13 @@ export const handleSubmit = async (
   if (Object.values(signupInfo).every(Boolean)) {
     if (validatePassword(signupInfo.password)) {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/api/signup-user`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(signupInfo),
-          }
-        );
+        const response = await fetch("http://localhost:5000/api/signup-user", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(signupInfo),
+        });
         const data = await response.json();
         if (response.ok) {
           setSignupError(false);

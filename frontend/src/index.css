@@ -8,6 +8,25 @@
   font-style: normal;
 }
 
+.font-karla {
+  font-family: "Karla";
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.font-signika {
+  font-family: "Signika";
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "GRAD" 0;
+}
+
+.font-lilita {
+  font-family: "Lilita One";
+  font-weight: 400;
+  font-style: normal;
+}
+
 .font-montserrat {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;

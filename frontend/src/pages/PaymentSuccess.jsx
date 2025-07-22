@@ -16,7 +16,7 @@ function PaymentSuccess() {
     const handleDbData = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/api/payment-success`,
+          "http://localhost:5000/api/payment-success",
           {
             method: "GET",
             headers: {
@@ -68,9 +68,9 @@ function PaymentSuccess() {
     dbData &&
     dbData.plans && (
       <div className="flex justify-center bg-gray-100 min-h-screen">
-        <div className="bg-white flex flex-col m-6 px-10 py-6 items-center justify-center">
+        <div className="bg-white flex flex-col m-6 xs:px-10 px-3 py-6 items-center justify-center">
           <div>
-            <div className="p-5 bg-green-100 rounded-full">
+            <div className="xs:p-5 bg-green-100 rounded-full">
               <TickLogo />
             </div>
           </div>
@@ -78,10 +78,10 @@ function PaymentSuccess() {
             <h1>Payment</h1>
             <h1>Successful!</h1>
           </div>
-          <div className="text-green-500 font-montserrat my-2 font-extrabold">
+          <div className="text-green-500 font-montserrat my-2 font-extrabold text-center">
             <h1>Your Plan has been Activated!</h1>
           </div>
-          <div className="bg-green-100 flex flex-col items-center px-20 py-8 m-6 text-xl">
+          <div className="bg-green-100 flex flex-col items-center xs:px-20 px-1 w-full py-8 m-6 sm:text-xl text-base">
             <div>
               <h1>
                 <span className="text-green-700 font-bold">Plan: </span>
@@ -109,7 +109,7 @@ function PaymentSuccess() {
               </h1>
             </div>
           </div>
-          <div>
+          <div className="text-center xs:text-lg text-sm">
             {`This page will close automatically in ${countDown} seconds`}
           </div>
         </div>

@@ -11,7 +11,7 @@ function Logo({ mainBG, dashboard }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       className={`lucide lucide-dumbbell text-black ${
-        mainBG ? "h-14 w-14" : dashboard ? "h-9 w-9" : "h-6 w-6"
+        mainBG ? "sm:h-12 sm:w-12 h-8 w-8" : dashboard ? "sm:h-10 sm:w-10 h-8 w-8" : "h-6 w-6"
       }`}
     >
       <path d="M14.4 14.4 9.6 9.6"></path>

@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Feature from "../components/Feature";
 import Membership from "../components/Membership";
 import Overlay from "../components/Overlay";
+import { AuthContext } from "../context/Context";
+import { useNavigate } from "react-router-dom";
 
-function LandingPage() {
+function LandingPage({ showBurgerMenu, setShowBurgerMenu }) {
+  const { isUserLoggedin, loading } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && isUserLoggedin) {
+      navigate("/user-dashboard");
+    }
+  }, [isUserLoggedin, loading, navigate]);
+
+  if (loading) return null;
   return (
-    <>
+    <div
+      className="w-full"
+      onClick={() => {
+        setShowBurgerMenu(false);
+      }}
+    >
       <Overlay />
       <Feature />
       <Membership dashboard={false} />
-    </>
+    </div>
   );
 }
 

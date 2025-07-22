@@ -12,13 +12,13 @@ export const gridDetail = (paidUserDetails, daysLeft, end_date) => {
       stringName: `Expires ${end_date}`,
     },
     {
-      mainName: "Personal Trainer",
+      mainName: "Trainer",
       logo: TrainerNameLogo,
       name: paidUserDetails?.trainer?.name,
       stringName: `Certified Professional`,
     },
     {
-      mainName: "Days Until Renewal",
+      mainName: "Days Left",
       logo: CalenderLogo,
       name: daysLeft,
       stringName: `Renewal on ${end_date}`,

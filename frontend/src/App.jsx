@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./services/ScrollToTop";
 import VerifyPage from "./pages/VerifyPage";
 import VerifyEmail from "./pages/VerifyEmail";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SignupContext } from "./context/Context.jsx";
 import PrivateUserRoute from "./routes/PrivateUserRoute.jsx";
 import UserDashboard from "./pages/UserDashboard.jsx";
@@ -34,20 +34,58 @@ function App() {
     "/verify-email",
   ];
   const showNavbar = showNavbarRoutes.includes(location.pathname);
+
+  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   return (
     <>
       <ScrollToTop />
-      {showNavbar && <Navbar />}
+      {showNavbar && (
+        <Navbar
+          showBurgerMenu={showBurgerMenu}
+          setShowBurgerMenu={setShowBurgerMenu}
+        />
+      )}
       <Routes>
-        <Route path="/" element={<LandingPage />}></Route>
-        <Route path="/login-user" element={<LoginUser />}></Route>
-        <Route path="/signup-user" element={<SignupUser />}></Route>
-        <Route path="/login-trainer" element={<LoginTrainer />}></Route>
+        <Route
+          path="/"
+          element={
+            <LandingPage
+              setShowBurgerMenu={setShowBurgerMenu}
+            />
+          }
+        ></Route>
+        <Route
+          path="/login-user"
+          element={
+            <LoginUser
+              setShowBurgerMenu={setShowBurgerMenu}
+            />
+          }
+        ></Route>
+        <Route
+          path="/signup-user"
+          element={
+            <SignupUser
+              setShowBurgerMenu={setShowBurgerMenu}
+            />
+          }
+        ></Route>
+        <Route
+          path="/login-trainer"
+          element={
+            <LoginTrainer
+              setShowBurgerMenu={setShowBurgerMenu}
+            />
+          }
+        ></Route>
         <Route
           path="/verify-page"
           element={
             <PrivateUserRoute>
-              <VerifyPage emailVal={signupInfo.email} />
+              <VerifyPage
+                emailVal={signupInfo.email}
+                setShowBurgerMenu={setShowBurgerMenu}
+              />
             </PrivateUserRoute>
           }
         ></Route>
@@ -63,18 +101,16 @@ function App() {
         <Route
           path="/payment-gateway"
           element={
-            <PrivateUserRoute>
-              <PrivatePaymentGatewayRoute>
-                <Payment />
-              </PrivatePaymentGatewayRoute>
-            </PrivateUserRoute>
+            <PrivatePaymentGatewayRoute>
+              <Payment />
+            </PrivatePaymentGatewayRoute>
           }
         ></Route>
         <Route
           path="/payment-success"
           element={
             <PrivateUserRoute>
-                <PaymentSuccess />
+              <PaymentSuccess />
             </PrivateUserRoute>
           }
         ></Route>

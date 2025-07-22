@@ -23,7 +23,7 @@ export const Footerlinks = [
       "About Us",
       "Contact",
       "Careers",
-      "Terms of Use",
+      "Terms of Use ",
       "Privacy Policy",
     ],
   },

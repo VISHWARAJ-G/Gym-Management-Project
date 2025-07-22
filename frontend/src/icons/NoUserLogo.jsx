@@ -13,7 +13,7 @@ function NoUserLogo() {
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="lucide lucide-users h-12 w-12 ml-0 text-gray-400"
+        class="lucide lucide-users sm:h-12 sm:w-12 h-6 w-6 ml-0 text-gray-400"
       >
         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
         <circle cx="9" cy="7" r="4"></circle>

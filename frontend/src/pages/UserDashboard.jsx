@@ -17,6 +17,8 @@ function UserDashboard() {
   const [isDropDown, setIsDropDown] = useState(false);
   const [overlay, setOverlay] = useState(false);
 
+  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
+
   return (
     <>
       <div className="" onClick={() => setIsDropDown(false)}>
@@ -25,14 +27,22 @@ function UserDashboard() {
           setIsDropDown={setIsDropDown}
           overlay={overlay}
           setOverlay={setOverlay}
+          setShowBurgerMenu={setShowBurgerMenu}
+          showBurgerMenu={showBurgerMenu}
         />
         <QuoteBox />
         <div className="bg-gray-100">
-          <Welcome />
+          <Welcome
+            showBurgerMenu={showBurgerMenu}
+            setShowBurgerMenu={setShowBurgerMenu}
+          />
           {payment_status === "inactive" ? (
             <NoPlanUserSection />
           ) : (
-            <PlanUserSection />
+            <PlanUserSection
+              showBurgerMenu={showBurgerMenu}
+              setShowBurgerMenu={setShowBurgerMenu}
+            />
           )}
         </div>
       </div>

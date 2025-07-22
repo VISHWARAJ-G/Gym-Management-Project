@@ -13,11 +13,12 @@ function TrainerDashboard() {
   const decoded_token = jwtDecode(trainerToken);
   const { trainer_id } = decoded_token;
   const [noMemberDashboard, setNoMemberDashboard] = useState(true);
+  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   useEffect(() => {
     const handleMemberCount = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/api/member-count/${trainer_id}`,
+          `http://localhost:5000/api/member-count/${trainer_id}`,
           {
             method: "GET",
             headers: {
@@ -40,14 +41,28 @@ function TrainerDashboard() {
   return (
     <>
       <ToastContainer autoClose={5000} position="top-right" />
-      <DashboardNavbar />
+      <DashboardNavbar
+        setShowBurgerMenu={setShowBurgerMenu}
+        showBurgerMenu={showBurgerMenu}
+      />
       <QuoteBox />
-      <div className="bg-gray-100 pl-16 pt-7 pb-3">
-        <Welcome />
+      <div className="bg-gray-100 max-h-full md:px-16 pt-7 pb-3">
+        <Welcome
+          setShowBurgerMenu={setShowBurgerMenu}
+          showBurgerMenu={showBurgerMenu}
+        />
         {noMemberDashboard ? (
-          <NoMemberDashboard trainer_id={trainer_id} />
+          <NoMemberDashboard
+            trainer_id={trainer_id}
+            setShowBurgerMenu={setShowBurgerMenu}
+            showBurgerMenu={showBurgerMenu}
+          />
         ) : (
-          <MemberDashboard trainer_id={trainer_id} />
+          <MemberDashboard
+            trainer_id={trainer_id}
+            setShowBurgerMenu={setShowBurgerMenu}
+            showBurgerMenu={showBurgerMenu}
+          />
         )}
       </div>
     </>

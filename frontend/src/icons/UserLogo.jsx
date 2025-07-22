@@ -13,7 +13,7 @@ function UserLogo({ dashboard }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       className={`lucide lucide-user  ${
-        dashboard ? "h-6 w-6 text-black" : "h-12 w-12 text-white"
+        dashboard ? "h-6 w-6 text-black" : "h-8 w-8 text-white"
       }`}
     >
       <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>

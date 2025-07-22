@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import Timer from "../icons/Timer";
 import { QrCode } from "lucide-react";
+import QrCodeLogo from "../icons/qrCodeLogo";
 import { AuthContext, PaymentContext } from "../context/Context";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import LogoQR from "../icons/LogoQR";
 
 function Payment() {
   const { token, setToken, selectedPlan } = useContext(AuthContext);
@@ -40,7 +40,7 @@ function Payment() {
   const handlePayment = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/payment-gateway`,
+        "http://localhost:5000/api/payment-gateway",
         {
           method: "POST",
           headers: {
@@ -63,7 +63,7 @@ function Payment() {
 
       try {
         const refreshResponse = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/api/refresh-token`,
+          "http://localhost:5000/api/refresh-token",
           {
             method: "POST",
             headers: {
@@ -108,8 +108,8 @@ function Payment() {
           <div className="text-center text-gray-500">{`Plan : ${selectedPlan.name} • Amount : ${selectedPlan.amount}`}</div>
         </div>
         {!paymentDone ? (
-          <div className="flex justify-center">
-            <div className="bg-red-100 m-4 py-2 rounded-2xl text-xl w-1/2 border-2 border-red-300 text-red-700 flex gap-2 justify-center">
+          <div className="flex justify-center items-center w-full">
+            <div className="bg-red-100 sm:m-4 m-2 py-2 rounded-2xl sm:text-xl text-base text-center w-1/2 border-2 border-red-300 text-red-700 flex gap-2 justify-center items-center">
               <Timer />
               <span className="inline-flex items-center">
                 {`Time Remaining : ${formatTime(timeLeft)}`}
@@ -124,13 +124,13 @@ function Payment() {
           </div>
         )}
         <div className="flex justify-center">
-          <div className="grid grid-cols-2 p-10 gap-4 w-3/4">
+          <div className="grid sm:grid-cols-2 grid-cols-1 lg:p-10 p-2 gap-4 md:w-3/4 w-full">
             <div className="flex flex-col gap-2 px-5 py-10 text-xl items-center hover:shadow-[2px_2px_10px_rgb(0,0,0,0.5)] bg-white justify-center ">
               <div className="flex items-center gap-3">
                 <QrCode /> <div className="font-bold"> Scan to Pay</div>
               </div>
               <div className="flex flex-col items-center px-8 py-16 bg-gray-200 m-4">
-                <LogoQR />
+                <QrCodeLogo />
                 <div className="text-sm text-gray-500 mt-1">
                   QR Code Will Appear Here
                 </div>
@@ -144,7 +144,7 @@ function Payment() {
               </button>
             </div>
             <div className="bg-white flex flex-col gap-2 py-10 text-xl hover:shadow-[2px_2px_10px_rgb(0,0,0,0.5)]">
-              <div className="text-center">Pay Via UPI</div>
+              <div className="text-center font-bold">Pay Via UPI</div>
               <div className="flex flex-col items-start mx-10 gap-2">
                 <label htmlFor="UPI">Enter UPI ID</label>
                 <input
@@ -171,7 +171,7 @@ function Payment() {
                   </div>
                 </div>
               </div>
-              <div className="text-base mx-10 text-gray-500">
+              <div className="text-base mx-10 text-gray-500 text-center">
                 Use your UPI app to complete the payment
               </div>
               <button
@@ -187,7 +187,7 @@ function Payment() {
           </div>
         </div>
         <div className="flex justify-center p-1">
-          <div className="border-2 border-gray-300 text-sm text-gray-500 px-7">
+          <div className="border-2 border-gray-300 text-sm text-center text-gray-500 px-7">
             By proceeding with payment, you agree to our terms and conditions.
             Your plan will be activated immediately after successful payment.
           </div>

@@ -51,9 +51,7 @@ function OverlayBox({ usersDetails, onClose, updateUserDetails }) {
       }
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/api/update-users/${
-            usersDetails.id
-          }`,
+          `http://localhost:5000/api/update-users/${usersDetails.id}`,
           {
             method: "PATCH",
             headers: {

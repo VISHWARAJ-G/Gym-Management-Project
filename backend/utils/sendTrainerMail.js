@@ -1,25 +1,13 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 const dotenv = require("dotenv");
-
 dotenv.config();
 
-async function sendTrainerEmail(email, name, trainerId, password) {
-  try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false, 
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false,
-      },
-    });
+const resend = new Resend(process.env.RESEND_APIKEY);
 
-    const mailOptions = {
-      from: `"Gym Admin" <${process.env.EMAIL_USER}>`,
+const sendTrainerEmail = async (email, name, trainerId, password) => {
+  try {
+    const { error } = await resend.emails.send({
+      from: "Gym Admin <onboarding@resend.dev>",
       to: email,
       subject: "Your Trainer Credentials",
       html: `
@@ -29,14 +17,18 @@ async function sendTrainerEmail(email, name, trainerId, password) {
         <p><strong>Password:</strong> ${password}</p>
         <p>Use these credentials to login to your dashboard.</p>
       `,
-    };
+    });
 
-    await transporter.verify();
-    await transporter.sendMail(mailOptions);
-    console.log("✅ Email sent to:", email);
+    if (error) {
+      console.error("❌ Failed to send trainer email:", error);
+      throw new Error("Failed to send trainer email");
+    }
+
+    console.log("✅ Trainer credentials sent to:", email);
   } catch (error) {
-    console.error("❌ Email sending failed:", error);
+    console.error("❌ Email error:", error.message);
+    throw error;
   }
-}
+};
 
 module.exports = sendTrainerEmail;

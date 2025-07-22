@@ -14,7 +14,7 @@ function PlanLogo({ planSection }) {
         strokeLinecap="round"
         strokeLinejoin="round"
         className={`lucide lucide-credit-card ${
-          planSection === false ? "h-12 w-12 text-yellow-600" : "h-4 w-4"
+          planSection === false ? "sm:h-12 sm:w-12 h-6 w-6 text-yellow-600" : "h-4 w-4"
         }`}
       >
         <rect width="20" height="14" x="2" y="5" rx="2"></rect>

@@ -11,7 +11,7 @@ function OverlayChangeTrainer({ setSuccess, trainerList, onClose, userid }) {
   useEffect(() => {
     const trainerIDs = async () => {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/trainersID-list/`,
+        `http://localhost:5000/api/trainersID-list/`,
         {
           method: "GET",
           headers: {
@@ -47,9 +47,7 @@ function OverlayChangeTrainer({ setSuccess, trainerList, onClose, userid }) {
     }
     try {
       const response = await fetch(
-        `${
-          import.meta.env.VITE_API_BASE_URL
-        }/api/update-usertrainers/${userid}`,
+        `http://localhost:5000/api/update-usertrainers/${userid}`,
         {
           method: "PATCH",
           headers: {

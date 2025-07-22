@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { PaymentContext } from "../context/Context";
+import { AuthContext, PaymentContext } from "../context/Context";
 import { Navigate } from "react-router-dom";
 
 function PrivatePaymentGatewayRoute({ children }) {
-  const { payNowClicked } = useContext(PaymentContext);
-  return payNowClicked ? children : <Navigate to={"/user-dashboard"} />;
+  const { isUserLoggedin, loading } = useContext(AuthContext);
+  if (loading) return null;
+
+  return isUserLoggedin ? children : <Navigate to="/login-user" />;
 }
 
 export default PrivatePaymentGatewayRoute;
