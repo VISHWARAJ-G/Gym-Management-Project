@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import Timer from "../icons/Timer";
 import { QrCode } from "lucide-react";
-import QrCodeLogo from "../icons/qrCodeLogo";
 import { AuthContext, PaymentContext } from "../context/Context";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import LogoQR from "../icons/LogoQR";
 
 function Payment() {
   const { token, setToken, selectedPlan } = useContext(AuthContext);
@@ -130,7 +130,7 @@ function Payment() {
                 <QrCode /> <div className="font-bold"> Scan to Pay</div>
               </div>
               <div className="flex flex-col items-center px-8 py-16 bg-gray-200 m-4">
-                <QrCodeLogo />
+                <LogoQR />
                 <div className="text-sm text-gray-500 mt-1">
                   QR Code Will Appear Here
                 </div>

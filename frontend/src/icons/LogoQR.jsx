@@ -1,6 +1,6 @@
 import React from "react";
 
-function QrCodeLogo() {
+function LogoQR() {
   return (
     <>
       <svg
@@ -32,4 +32,4 @@ function QrCodeLogo() {
   );
 }
 
-export default QrCodeLogo;
+export default LogoQR;
