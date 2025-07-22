@@ -16,7 +16,7 @@ function Overlay() {
       </div>
       <div className="relative z-10 text-white flex flex-col justify-center items-center sm:p-10 xs:p-7 p-3">
         <div className="flex sm:mb-5 md:mb-8 mb-2">
-          <div className="bg-gradient-to-r from-yellow-400 to-orange-500 lg:p-7 sm:p-5 -p-4 rounded-full hover:scale-110 transition-all duration-300">
+          <div className="bg-gradient-to-r from-yellow-400 to-orange-500 lg:p-7 sm:p-5 p-3 rounded-full hover:scale-110 transition-all duration-300">
             <Logo mainBG={mainBG} dashboard={false} />
           </div>
         </div>
