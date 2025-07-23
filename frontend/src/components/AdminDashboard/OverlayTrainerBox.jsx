@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { AdminEditContext, AuthContext } from "../../context/Context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
   useEffect(() => {
@@ -55,7 +57,9 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
       }
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/api/update-trainers/${trainer_id}`,
+          `${
+            import.meta.env.VITE_API_BASE_URL
+          }/api/update-trainers/${trainer_id}`,
           {
             method: "PATCH",
             headers: {
@@ -108,25 +112,27 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
     <>
       <ToastContainer autoClose={4000} position="top-right" />
       <div
-        className="bg-black/80 fixed inset-0 z-50 flex justify-center"
+        className="bg-black/80 fixed inset-0 z-50 flex justify-center items-center"
         onClick={onClose}
       >
         <div
-          className="bg-white flex flex-col p-5 items-start gap-3 min-w-96 m-4 overflow-y-auto"
+          className="bg-white flex flex-col md:p-5 p-2 my-3 mx-[.1rem] items-start gap-3 max-h-fit md:m-4 overflow-y-auto"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between w-full items-center">
-            <div className="font-bold text-2xl">Edit Member Detail</div>
+            <div className="font-bold md:text-2xl text-base">
+              Edit Member Detail
+            </div>
             <button
               onClick={onClose}
               className="text-black hover:bg-gray-400 hover:text-white px-1"
             >
-              X
+              <FontAwesomeIcon icon={faXmark} />
             </button>
           </div>
           <form onSubmit={handleUserEditSubmit}>
             <div className="flex flex-col gap-1 w-full" ref={fieldRef.name}>
-              <label htmlFor="Name" className="text-gray-500 font-bold">
+              <label htmlFor="Name" className="text-gray-500 font-bold text-sm">
                 Name
               </label>
               <input
@@ -135,7 +141,7 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
                 id="Name"
                 value={trainersList.name}
                 onChange={handleChange}
-                className={`p-2 border-2 border-gray-400 rounded-xl ${
+                className={`p-2 border-2 border-gray-400 text-sm ${
                   error.name
                     ? "border-4 border-red-600 animate-pulse focus:outline-none"
                     : "focus:outline-2 focus:outline-yellow-600"
@@ -148,7 +154,10 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
               )}
             </div>
             <div className="flex flex-col gap-1 w-full" ref={fieldRef.email}>
-              <label htmlFor="Email" className="text-gray-500 font-bold">
+              <label
+                htmlFor="Email"
+                className="text-gray-500 font-bold text-sm"
+              >
                 Email
               </label>
               <input
@@ -157,7 +166,7 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
                 id="Email"
                 value={trainersList.email}
                 onChange={handleChange}
-                className={`p-2 border-2 border-gray-400 rounded-xl ${
+                className={`p-2 border-2 border-gray-400 text-sm ${
                   error.email
                     ? "border-4 border-red-600 animate-pulse focus:outline-none"
                     : "focus:outline-2 focus:outline-yellow-600"
@@ -170,7 +179,10 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
               )}
             </div>
             <div className="flex flex-col gap-1 w-full" ref={fieldRef.phone}>
-              <label htmlFor="Phone" className="text-gray-500 font-bold">
+              <label
+                htmlFor="Phone"
+                className="text-gray-500 font-bold text-sm"
+              >
                 Phone
               </label>
               <input
@@ -179,7 +191,7 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
                 id="Phone"
                 value={trainersList.phone}
                 onChange={phoneChange}
-                className={`p-2 border-2 border-gray-400 rounded-xl ${
+                className={`p-2 border-2 border-gray-400 text-sm ${
                   error.phone
                     ? "border-4 border-red-600 animate-pulse focus:outline-none"
                     : "focus:outline-2 focus:outline-yellow-600"
@@ -192,7 +204,7 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
               )}
             </div>
             <div className="flex flex-col gap-1 w-full" ref={fieldRef.dob}>
-              <label htmlFor="Dob" className="text-gray-500 font-bold">
+              <label htmlFor="Dob" className="text-gray-500 font-bold text-sm">
                 Date of Birth
               </label>
               <input
@@ -201,7 +213,7 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
                 id="Dob"
                 value={trainersList.dob}
                 onChange={handleChange}
-                className={`p-2 border-2 border-gray-400 rounded-xl ${
+                className={`p-2 border-2 border-gray-400 text-sm ${
                   error.dob
                     ? "border-4 border-red-600 animate-pulse focus:outline-none"
                     : "focus:outline-2 focus:outline-yellow-600"
@@ -215,7 +227,10 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
             </div>
             <div className="flex justify-between gap-3" ref={fieldRef.age}>
               <div className="flex flex-col gap-1 w-full">
-                <label htmlFor="Age" className="text-gray-500 font-bold">
+                <label
+                  htmlFor="Age"
+                  className="text-gray-500 font-bold text-sm"
+                >
                   Age
                 </label>
                 <input
@@ -224,7 +239,7 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
                   id="Age"
                   value={trainersList.age}
                   onChange={handleChange}
-                  className={`p-2 border-2 border-gray-400 rounded-xl ${
+                  className={`p-2 border-2 border-gray-400 text-sm ${
                     error.age
                       ? "border-4 border-red-600 animate-pulse focus:outline-none"
                       : "focus:outline-2 focus:outline-yellow-600"
@@ -237,13 +252,18 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
                 )}
               </div>
               <div className="flex flex-col gap-1 w-full" ref={fieldRef.gender}>
-                <label htmlFor="Gender">Gender</label>
+                <label
+                  htmlFor="Gender"
+                  className="text-gray-500 font-bold text-sm"
+                >
+                  Gender
+                </label>
                 <select
                   name="gender"
                   id="Gender"
                   value={trainersList.gender}
                   onChange={handleChange}
-                  className={`p-2 border-2 border-gray-400 rounded-xl ${
+                  className={`p-2 border-2 border-gray-400 text-sm ${
                     error.gender
                       ? "border-4 border-red-600 animate-pulse focus:outline-none"
                       : "focus:outline-2 focus:outline-yellow-600"
@@ -261,7 +281,10 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
               </div>
             </div>
             <div className="flex flex-col gap-1 w-full" ref={fieldRef.address}>
-              <label htmlFor="Address" className="">
+              <label
+                htmlFor="Address"
+                className="text-gray-500 font-bold text-sm"
+              >
                 Address
               </label>
               <textarea
@@ -269,7 +292,7 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
                 id="Address"
                 value={trainersList.address}
                 onChange={handleChange}
-                className={`p-2 border-2 border-gray-400 rounded-xl ${
+                className={`p-2 border-2 border-gray-400 text-sm ${
                   error.address
                     ? "border-4 border-red-600 animate-pulse focus:outline-none"
                     : "focus:outline-2 focus:outline-yellow-600"
@@ -281,7 +304,7 @@ function OverlayTrainerBox({ onClose, trainers, setSuccess }) {
                 </div>
               )}
             </div>
-            <button className="p-2 w-full mt-3 font-bold text-center bg-gradient-to-r from-yellow-400 to-orange-400">
+            <button className="p-2 w-full mt-3 font-bold text-center bg-gradient-to-r text-sm from-yellow-400 to-orange-400">
               Save Changes
             </button>
           </form>

@@ -31,7 +31,7 @@ function UserDashboard() {
           showBurgerMenu={showBurgerMenu}
         />
         <QuoteBox />
-        <div className="bg-gray-100">
+        <div className="bg-gray-100 min-h-screen">
           <Welcome
             showBurgerMenu={showBurgerMenu}
             setShowBurgerMenu={setShowBurgerMenu}

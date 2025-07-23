@@ -6,12 +6,15 @@ import { AuthContext } from "../context/Context";
 import { useNavigate } from "react-router-dom";
 
 function LandingPage({ showBurgerMenu, setShowBurgerMenu }) {
-  const { isUserLoggedin, loading } = useContext(AuthContext);
+  const { isUserLoggedin, isAdminLoggedIn, isTrainerLoggedIn, loading } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && isUserLoggedin) {
-      navigate("/user-dashboard");
+    if (!loading) {
+      if (isUserLoggedin) navigate("/user-dashboard");
+      else if (isTrainerLoggedIn) navigate("/trainer-dashboard");
+      else if (isAdminLoggedIn) navigate("/admin-dashboard");
     }
   }, [isUserLoggedin, loading, navigate]);
 

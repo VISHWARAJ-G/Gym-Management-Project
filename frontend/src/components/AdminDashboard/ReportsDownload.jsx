@@ -22,7 +22,7 @@ function ReportsDownload() {
         <div className="text-center w-full py-3">
           <button
             onClick={() => setActiveLink("Add Trainer")}
-            className="flex justify-center items-center gap-2 text-base w-full py-3 rounded-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 font-bold"
+            className="flex justify-center items-center gap-2 md:text-base xs:text-sm text-xs w-full py-3 rounded-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 font-bold"
           >
             <UserLogo dashboard={true} /> Add New Trainer
           </button>
@@ -30,7 +30,7 @@ function ReportsDownload() {
         <div className="text-center w-full py-3 rounded-full ">
           <button
             onClick={handleUserDownload}
-            className="text-base flex items-center justify-center gap-2 w-full border-2 border-slate-400 hover:border-yellow-600 font-bold rounded-full py-2"
+            className="md:text-base flex items-center xs:text-sm text-xs justify-center gap-2 w-full border-2 border-slate-400 hover:border-yellow-600 font-bold rounded-full py-2"
           >
             <DownloadLogo /> Export All Users
           </button>
@@ -38,7 +38,7 @@ function ReportsDownload() {
         <div className="text-center w-full py-3 rounded-full ">
           <button
             onClick={handleTrainerDownload}
-            className="text-base flex items-center justify-center gap-2 w-full border-2 border-slate-400 hover:border-red-600 font-bold rounded-full py-2"
+            className="md:text-base xs:text-sm text-xs flex items-center justify-center gap-2 w-full border-2 border-slate-400 hover:border-red-600 font-bold rounded-full py-2"
           >
             <DownloadLogo /> Export All Trainers
           </button>

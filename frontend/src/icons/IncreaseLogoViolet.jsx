@@ -13,7 +13,7 @@ function IncreaseLogoViolet() {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={`lucide lucide-trending-up h-5 w-5 text-violet-600`}
+        className={`lucide lucide-trending-up lg:h-5 lg:w-5 h-4 w-4 text-violet-600`}
       >
         <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
         <polyline points="16 7 22 7 22 13"></polyline>

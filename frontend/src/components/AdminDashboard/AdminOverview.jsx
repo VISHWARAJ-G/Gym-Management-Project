@@ -53,21 +53,21 @@ function AdminOverview() {
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-4 mx-16 my-10">
+      <div className="grid sm:grid-cols-4 grid-cols-2 gap-4 md:mx-16 mx-2 sm:my-10 mb-7">
         {gridBoxDetails.map((val) => {
           const Logo = val.Logo;
           return (
             <div
               key={val.name}
-              className="flex flex-col items-start bg-white rounded-2xl p-7 hover:shadow-[0px_0px_10px_rgb(0,0,0,0.6)] transition-all"
+              className="flex flex-col items-start bg-white lg:rounded-2xl rounded-md lg:p-7 p-4 hover:shadow-[0px_0px_10px_rgb(0,0,0,0.6)] transition-all"
             >
-              <div className="flex justify-between font-bold text-gray-600 items-center w-full">
-                {val.name}
+              <div className="flex justify-between font-bold lg:text-xl text-base text-gray-600 items-center w-full">
+                <span className="lg:text-xl text-sm">{val.name}</span>
                 <Logo dashboard={true} />
               </div>
               <div className="w-full">
                 <div
-                  className={`font-bold text-4xl mt-4 font-bebas ${
+                  className={`font-bold lg:text-4xl sm:text-2xl text-base mt-4 font-bebas ${
                     val.isExtraColorRequired
                       ? val.boxName === "active"
                         ? "text-green-600 "
@@ -83,17 +83,19 @@ function AdminOverview() {
                     : val.func}
                 </div>
                 <div
-                  className={`text-gray-400 text-sm w-full flex items-center gap-2 rounded-full ${
+                  className={`text-gray-400 text-sm w-full flex items-center gap-2 lg:rounded-2xl rounded-md ${
                     val.isExtraBorderRequired
-                      ? val.boxName === "active"
-                        ? "bg-green-100 w-full text-green-900 tracking-wider font-bebas"
-                        : "bg-yellow-100 w-full text-yellow-900 tracking-wider font-bebas"
+                      ? `  pl-1 m-[.1rem]  ${
+                          val.boxName === "active"
+                            ? "bg-green-100 w-full text-green-900 tracking-wider font-bebas"
+                            : "bg-yellow-100 w-full text-yellow-900 tracking-wider font-bebas"
+                        }`
                       : ""
                   }`}
                 >
                   {val.isExtraBorderRequired && (
                     <span
-                      className={`inline-block w-2 h-2 rounded-full ${
+                      className={`inline-block w-2 h-2 lg:rounded-2xl rounded-md ${
                         val.boxName === "active"
                           ? "bg-green-800"
                           : "bg-yellow-800"
@@ -107,13 +109,15 @@ function AdminOverview() {
           );
         })}
       </div>
-      <div className="grid grid-cols-2 gap-4 mx-16 text-2xl">
-        <div className="bg-white p-9 flex flex-col w-full">
-          <h1 className="font-bold">Quick Actions</h1>
-          <ReportsDownload />
-        </div>
-        <div className="bg-white p-9 w-full">
+      <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 md:mx-16 mx-2 text-2xl">
+        <div className="bg-white md:p-9 p-2 w-full order-1 sm:order-2">
           <RecentActivity />
+        </div>
+        <div className="bg-white md:p-9 p-2 flex flex-col w-full order-2 sm:order-1">
+          <h1 className="font-bold md:text-lg xs:text-base text-xs">
+            Quick Actions
+          </h1>
+          <ReportsDownload />
         </div>
       </div>
     </>

@@ -1,9 +1,22 @@
+import {
+  faAdd,
+  faAddressBook,
+  faPeopleGroup,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import IncreaseLogo from "../icons/IncreaseLogo";
 import IncreaseLogoViolet from "../icons/IncreaseLogoViolet";
 import UserLogo from "../icons/UserLogo";
 import Warning from "../icons/Warning";
 
 export const buttons = ["Overview", "Users", "Trainers", "Add Trainer"];
+
+export const buttonLogos = {
+  Overview: faAddressBook,
+  Users: faUser,
+  Trainers: faPeopleGroup,
+  "Add Trainer": faAdd,
+};
 
 export const gridBoxes = (
   totalMembers,
@@ -20,7 +33,7 @@ export const gridBoxes = (
       isExtraColorRequired: false,
       isExtraBorderRequired: false,
       boxName: "",
-      others: "All Registered Users",
+      others: "All Users",
     },
     {
       name: "Active Users",
@@ -30,7 +43,7 @@ export const gridBoxes = (
       isExtraColorRequired: true,
       isExtraBorderRequired: true,
       boxName: "active",
-      others: "Active Status",
+      others: "Active",
     },
     {
       name: "Renewal Due",
@@ -50,7 +63,7 @@ export const gridBoxes = (
       isExtraColorRequired: false,
       isExtraBorderRequired: false,
       boxName: "",
-      others: "Overall Income",
+      others: "Income",
     },
   ];
 };

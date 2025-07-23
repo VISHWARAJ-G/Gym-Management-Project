@@ -14,7 +14,9 @@ function OverlayDelTrainer({ onClose, setDeleteSuccess, delTrainer }) {
     e.preventDefault();
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/delete-trainer/${delTrainer.trainer_id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/delete-trainer/${
+          delTrainer.trainer_id
+        }`,
         {
           method: "DELETE",
           headers: {
@@ -45,19 +47,19 @@ function OverlayDelTrainer({ onClose, setDeleteSuccess, delTrainer }) {
         onClick={onClose}
       >
         <div
-          className="bg-white flex flex-col justify-start gap-5 px-8 py-12"
+          className="bg-white flex flex-col justify-start gap-5 px-8 py-12 m-3"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="text-black font-poppins font-bold">
+          <div className="text-black font-poppins font-bold text-center sm:text-lg text-sm">
             Delete Confirmation
           </div>
-          <div className="text-gray-500 font-poppins">
-            Are you sure you want to delete Trainer {delTrainer.name} ...?
+          <div className="text-gray-500 font-poppins sm:text-lg text-xs text-center">
+            Are you sure you want to delete Trainer {delTrainer.name}?
           </div>
           <div className="flex justify-center gap-5">
             <div>
               <button
-                className="p-3 px-7 bg-gray-300 rounded-3xl"
+                className="p-3 px-7 bg-gray-300 rounded-3xl sm:text-lg text-xs"
                 onClick={onClose}
               >
                 Cancel
@@ -65,7 +67,7 @@ function OverlayDelTrainer({ onClose, setDeleteSuccess, delTrainer }) {
             </div>
             <div>
               <button
-                className="p-3 px-7 bg-red-800 text-white rounded-3xl"
+                className="p-3 px-7 bg-red-800 text-white rounded-3xl sm:text-lg text-xs"
                 onClick={handleClick}
               >
                 Delete

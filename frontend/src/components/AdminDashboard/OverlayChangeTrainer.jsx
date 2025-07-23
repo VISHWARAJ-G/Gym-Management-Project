@@ -3,7 +3,12 @@ import { AdminContext, AuthContext } from "../../context/Context";
 import { toast, ToastContainer } from "react-toastify";
 
 function OverlayChangeTrainer({ setSuccess, trainerList, onClose, userid }) {
-  console.log(userid);
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
   const { adminToken } = useContext(AuthContext);
   const [trainersId, setTrainersId] = useState([]);
   const [trainerName, setTrainerName] = useState([]);
@@ -84,7 +89,7 @@ function OverlayChangeTrainer({ setSuccess, trainerList, onClose, userid }) {
         onClick={onClose}
       >
         <div
-          className="bg-white p-10 flex flex-col"
+          className="bg-white xs:p-10 p-5 flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
           <h1 className="font-bold text-xl mb-5">

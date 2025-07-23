@@ -60,16 +60,19 @@ function AdminAddTrainer() {
   return (
     <>
       <ToastContainer position="top-right" autoClose={5000} />
-      <div className="flex justify-center">
+      <div className="lg:flex lg:justify-center lg:my-10 mt-2 sm:mx-20 mx-2">
         <div className="bg-white p-5 flex flex-col">
-          <div className="flex gap-1 font-bold text-xl items-center">
+          <div className="flex gap-1 font-bold sm:text-xl text-sm items-center">
             <AddMemberLogo /> Add New Trainer
           </div>
           <form onSubmit={handleSubmit}>
             <div className="mt-4 text-lg">
-              <div className="flex gap-20">
+              <div className="flex lg:flex-row flex-col lg:gap-20 gap-5 mb-2 sm:p-3 p-1">
                 <div className="flex flex-col gap-2" ref={fieldRef.name}>
-                  <label htmlFor="Name" className="font-bold">
+                  <label
+                    htmlFor="Name"
+                    className="font-bold text-sm sm:text-lg"
+                  >
                     Name *
                   </label>
                   <input
@@ -79,7 +82,7 @@ function AdminAddTrainer() {
                     onChange={handleChange}
                     id="Name"
                     placeholder="Enter the name"
-                    className={`p-3 border-2 border-gray-300 text-xl min-w-80 rounded-xl ${
+                    className={`sm:p-3 p-1 border-2 border-gray-300 sm:text-xl text-sm sm:rounded-xl ${
                       error.name
                         ? "border-4 border-red-600 animate-pulse focus:outline-none"
                         : "focus:outline-2 focus:outline-yellow-600"
@@ -92,7 +95,10 @@ function AdminAddTrainer() {
                   )}
                 </div>
                 <div className="flex flex-col gap-2" ref={fieldRef.email}>
-                  <label htmlFor="Email" className="font-bold">
+                  <label
+                    htmlFor="Email"
+                    className="font-bold text-sm sm:text-lg"
+                  >
                     Email *
                   </label>
                   <input
@@ -102,7 +108,7 @@ function AdminAddTrainer() {
                     onChange={handleChange}
                     id="Email"
                     placeholder="Enter the Email"
-                    className={`p-3 border-2 border-gray-300 text-xl min-w-80 rounded-xl ${
+                    className={`sm:p-3 p-1 border-2 border-gray-300 sm:text-xl text-sm sm:rounded-xl ${
                       error.email
                         ? "border-4 border-red-600 animate-pulse focus:outline-none"
                         : "focus:outline-2 focus:outline-yellow-600"
@@ -115,9 +121,12 @@ function AdminAddTrainer() {
                   )}
                 </div>
               </div>
-              <div className="flex gap-20 mt-5" ref={fieldRef.age}>
+              <div
+                className="flex lg:flex-row flex-col lg:gap-20 gap-5 mb-2 sm:p-3 p-1 sm:mt-5"
+                ref={fieldRef.age}
+              >
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="Age" className="font-bold">
+                  <label htmlFor="Age" className="font-bold text-sm sm:text-lg">
                     Age *
                   </label>
                   <input
@@ -127,7 +136,7 @@ function AdminAddTrainer() {
                     onChange={handleChange}
                     id="Age"
                     placeholder="Enter the Age"
-                    className={`p-3 border-2 border-gray-300 text-xl min-w-80 rounded-xl ${
+                    className={`sm:p-3 p-1 border-2 border-gray-300 sm:text-xl text-sm sm:rounded-xl ${
                       error.age
                         ? "border-4 border-red-600 animate-pulse focus:outline-none"
                         : "focus:outline-2 focus:outline-yellow-600"
@@ -143,7 +152,10 @@ function AdminAddTrainer() {
                   className="flex flex-col gap-2 w-full"
                   ref={fieldRef.gender}
                 >
-                  <label htmlFor="Gender" className="font-bold ">
+                  <label
+                    htmlFor="Gender"
+                    className="font-bold text-sm sm:text-lg "
+                  >
                     Gender *
                   </label>
                   <select
@@ -151,7 +163,7 @@ function AdminAddTrainer() {
                     value={trainerForm.gender}
                     onChange={handleChange}
                     id="Gender"
-                    className={`p-3 border-2 border-gray-300 text-xl min-w-80 rounded-xl ${
+                    className={`sm:p-3 p-1 border-2 border-gray-300 sm:text-xl text-sm sm:rounded-xl ${
                       error.gender
                         ? "border-4 border-red-600 animate-pulse focus:outline-none"
                         : "focus:outline-2 focus:outline-yellow-600"
@@ -171,9 +183,15 @@ function AdminAddTrainer() {
                   )}
                 </div>
               </div>
-              <div className="flex gap-20 mt-5" ref={fieldRef.phone}>
+              <div
+                className="flex lg:flex-row flex-col lg:gap-20 gap-5 mb-2 sm:p-3 p-1 mt-5"
+                ref={fieldRef.phone}
+              >
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="Phone" className="font-bold">
+                  <label
+                    htmlFor="Phone"
+                    className="font-bold text-sm sm:text-lg"
+                  >
                     Phone Number *
                   </label>
                   <input
@@ -182,7 +200,7 @@ function AdminAddTrainer() {
                     name="phone"
                     value={trainerForm.phone}
                     onChange={phoneChange}
-                    className={`p-3 border-2 border-gray-300 text-xl min-w-80 rounded-xl ${
+                    className={`sm:p-3 p-1 border-2 border-gray-300 sm:text-xl text-sm sm:rounded-xl ${
                       error.phone
                         ? "border-4 border-red-600 animate-pulse focus:outline-none"
                         : "focus:outline-2 focus:outline-yellow-600"
@@ -196,7 +214,7 @@ function AdminAddTrainer() {
                   )}
                 </div>
                 <div className="flex flex-col gap-2 w-full" ref={fieldRef.dob}>
-                  <label htmlFor="DOB" className="font-bold">
+                  <label htmlFor="DOB" className="font-bold text-sm sm:text-lg">
                     Date of Birth *
                   </label>
                   <input
@@ -205,7 +223,7 @@ function AdminAddTrainer() {
                     value={trainerForm.dob}
                     onChange={handleChange}
                     id="DOB"
-                    className={`p-3 border-2 border-gray-300 text-xl min-w-80 rounded-xl ${
+                    className={`sm:p-3 p-1 border-2 border-gray-300 sm:text-xl text-sm sm:rounded-xl ${
                       error.dob
                         ? "border-4 border-red-600 animate-pulse focus:outline-none"
                         : "focus:outline-2 focus:outline-yellow-600"
@@ -219,7 +237,10 @@ function AdminAddTrainer() {
                 </div>
               </div>
               <div className="flex flex-col mt-4 gap-2" ref={fieldRef.address}>
-                <label htmlFor="Address" className="font-bold">
+                <label
+                  htmlFor="Address"
+                  className="font-bold text-sm sm:text-lg"
+                >
                   Address *
                 </label>
                 <textarea
@@ -228,7 +249,7 @@ function AdminAddTrainer() {
                   id="Address"
                   onChange={handleChange}
                   placeholder="Enter your Address"
-                  className={`p-3 border-2 border-gray-300 text-xl min-w-80 rounded-xl ${
+                  className={`sm:p-3 p-1 border-2 border-gray-300 sm:text-xl text-sm sm:rounded-xl ${
                     error.address
                       ? "border-4 border-red-600 animate-pulse focus:outline-none"
                       : "focus:outline-2 focus:outline-yellow-600"
@@ -241,7 +262,10 @@ function AdminAddTrainer() {
                 )}
               </div>
               <div className="mt-4 flex flex-col gap-2" ref={fieldRef.aadhar}>
-                <label htmlFor="Aadhar" className="font-bold">
+                <label
+                  htmlFor="Aadhar"
+                  className="font-bold text-sm sm:text-lg"
+                >
                   Aadhar Number *
                 </label>
                 <input
@@ -251,7 +275,7 @@ function AdminAddTrainer() {
                   onChange={handleAadharChange}
                   id="Aadhar"
                   placeholder="XXXX-XXXX-XXXX"
-                  className={`p-3 border-2 border-gray-300 text-xl min-w-80 rounded-xl ${
+                  className={`sm:p-3 p-1 border-2 border-gray-300 sm:text-xl text-sm sm:rounded-xl ${
                     error.aadhar
                       ? "border-4 border-red-600 animate-pulse focus:outline-none"
                       : "focus:outline-2 focus:outline-yellow-600"
@@ -267,7 +291,7 @@ function AdminAddTrainer() {
             <div>
               <button
                 disabled={isSubmitting}
-                className="w-full text-xl font-bold text-white text-center bg-gradient-to-r from-blue-500 to-green-500 p-4 rounded-2xl mt-4"
+                className="w-full font-bold text-sm sm:text-lg text-white text-center bg-gradient-to-r from-blue-500 to-green-500 p-4 rounded-2xl mt-4"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>

@@ -6,12 +6,14 @@ function Welcome({ showBurgerMenu, setShowBurgerMenu }) {
   const { token } = useContext(AuthContext);
   const decoded_token = jwtDecode(token);
   const { name, status } = decoded_token;
+  const splitted_name = name.split(" ")[0];
+  console.log(splitted_name);
   return (
     <div
       className="lg:px-16 md:px-8 px-2 md:py-5 pt-24"
       onClick={() => setShowBurgerMenu(false)}
     >
-      <div className="text-black font-bold lg:text-4xl text-xl">{`Welcome Back,${name}`}</div>
+      <div className="text-black font-bold lg:text-4xl text-xl">{`Welcome Back,${splitted_name}`}</div>
       <div className="tracking-wider text-gray-400 lg:text-xl text-sm py-3">
         {status === "Inactive"
           ? "Get started with your fitness journey"

@@ -28,7 +28,7 @@ function AdminLiveDataInfo() {
   return (
     <>
       <div className="pb-6">
-        <nav className="mx-16 flex justify-between gap-1 bg-white rounded-3xl">
+        <nav className="md:mx-16 mx-2 sm:flex hidden justify-between gap-1 bg-white rounded-3xl">
           {buttonLinks.map((val) => {
             return (
               <button

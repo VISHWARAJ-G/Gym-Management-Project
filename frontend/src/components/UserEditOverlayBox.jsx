@@ -109,11 +109,11 @@ function UserEditOverlayBox({ usersDetails, onClose }) {
     <>
       <ToastContainer autoClose={4000} position="top-right" />
       <div
-        className="bg-black/80 fixed inset-0 z-50 flex justify-center"
+        className="bg-black/80 fixed inset-0 z-50 flex justify-center items-center"
         onClick={onClose}
       >
         <div
-          className="bg-white flex flex-col md:p-5 p-2 my-3 mx-[.1rem] items-start gap-3 md:m-4 overflow-y-auto"
+          className="bg-white flex flex-col md:p-5 p-2 my-3 mx-[.1rem] items-start gap-3 md:m-4 overflow-y-auto max-h-fit"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between w-full items-center">

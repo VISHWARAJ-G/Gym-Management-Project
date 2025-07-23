@@ -96,7 +96,7 @@ function PlanUserSection({ showBurgerMenu, setShowBurgerMenu }) {
     <>
       <ToastContainer autoClose={5000} position="top-right" />
       <div className="pb-1" onClick={() => setShowBurgerMenu(false)}>
-        <div className="grid lg:grid-cols-4 tiny:grid-cols-2 grid-cols-1 gap-4 lg:mx-16 md:mx-8 sm:mx-2 mx-2 lg:text-xl text-base">
+        <div className="grid lg:grid-cols-4 tiny:grid-cols-2 grid-cols-1 gap-4 lg:mx-16 md:mx-8 sm:mx-2 mx-4 lg:text-xl text-base">
           {boxList.map((val, index) => {
             const Logo = val.logo;
             return (
@@ -105,7 +105,7 @@ function PlanUserSection({ showBurgerMenu, setShowBurgerMenu }) {
                 className="flex flex-col bg-white lg:p-5 p-2 gap-4 hover:shadow-[0px_0px_10px_rgb(0,0,0,0.5)] rounded-lg w-full"
               >
                 <div className="flex justify-between items-center">
-                  <div className="font-bold text-lg">
+                  <div className="font-bold lg:text-xl text-sm">
                     {val.mainName || "N/A"}
                   </div>
                   <div>
@@ -116,7 +116,7 @@ function PlanUserSection({ showBurgerMenu, setShowBurgerMenu }) {
                   <div
                     className={`${
                       val.name <= 7 ? "text-red-700" : "text-green-700"
-                    } font-bold lg:text-xl text-base`}
+                    } font-bold lg:text-xl text-sm`}
                   >
                     {val.name || "N/A"}
                   </div>
@@ -128,7 +128,7 @@ function PlanUserSection({ showBurgerMenu, setShowBurgerMenu }) {
             );
           })}
         </div>
-        <div className="flex justify-center sm:my-10 md:mx-8 lg:mx-20 my-5 mx-2">
+        <div className="flex justify-center sm:my-10 lg:mx-16 md:mx-8 sm:mx-2 mx-4 my-5">
           <div className="grid xs:grid-cols-2 grid-cols-1 lg:gap-12 gap-5 w-full">
             <div className="bg-white lg:p-8 p-2 hover:shadow-[0px_0px_10px_rgb(0,0,0,0.5)]">
               <div className="font-bold sm:text-2xl text-base">

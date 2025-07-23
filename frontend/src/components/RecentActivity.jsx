@@ -32,7 +32,9 @@ function RecentActivity() {
   if (error) return <div>{error}</div>;
   return (
     <div>
-      <h1 className="text-black font-bold mb-4">Recent Activity</h1>
+      <h1 className="text-black font-bold mb-4 md:text-lg xs:text-base text-xs">
+        Recent Activity
+      </h1>
       <div className="grid grid-cols-1 gap-4">
         {activities.map((val) => {
           const changeDate = new Date(val.created_at).toLocaleDateString(
@@ -49,9 +51,11 @@ function RecentActivity() {
               className="bg-gray-100 grid grid-cols-1 w-full"
             >
               <div className="flex justify-between items-center w-full p-1">
-                <div className="text-lg font-bold">{val.users.name}</div>
+                <div className="md:text-lg  xs:text-base text-xs font-bold">
+                  {val.users.name}
+                </div>
                 <div
-                  className={`text-base font-montserrat ${
+                  className={`md:text-lg xs:text-base text-xs font-montserrat ${
                     val.status === "active"
                       ? "bg-green-200 text-green-800 font-bold px-2 py-1 rounded-xl"
                       : val.status === ("expiring" || "expired")
@@ -63,10 +67,10 @@ function RecentActivity() {
                 </div>
               </div>
               <div className="flex justify-between items-center p-1">
-                <div className="text-sm text-gray-500">
+                <div className="xs:text-sm text-xs text-gray-500">
                   {val.plans.plan_name}
                 </div>
-                <div className="text-sm">{changeDate}</div>
+                <div className="xs:text-sm text-xs">{changeDate}</div>
               </div>
             </div>
           );

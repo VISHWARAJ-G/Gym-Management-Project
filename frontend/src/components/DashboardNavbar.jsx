@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../context/Context";
+import { AdminContext, AuthContext } from "../context/Context";
 import Logo from "../icons/Logo";
 import { jwtDecode } from "jwt-decode";
 import UserLogo from "../icons/UserLogo";
 import Logout from "../icons/Logout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { buttonLogos, buttons } from "../services/AdminLiveData";
 
 function DashboardNavbar({ showBurgerMenu, setShowBurgerMenu }) {
   const { adminToken, trainerToken } = useContext(AuthContext);
@@ -14,6 +15,9 @@ function DashboardNavbar({ showBurgerMenu, setShowBurgerMenu }) {
   const roleName = decoded_token?.role;
   const { name } = decoded_token;
   const { logout } = useContext(AuthContext);
+  const buttonLinks = buttons;
+  const buttonLogo = buttonLogos;
+  const { activeLink, setActiveLink } = useContext(AdminContext);
   return (
     <nav
       className="z-50 flex bg-white/50 backdrop-blur-xl py-5 md:px-16 px-2 justify-between items-center fixed top-0 left-0 w-full"
@@ -53,7 +57,7 @@ function DashboardNavbar({ showBurgerMenu, setShowBurgerMenu }) {
               : "opacity-0 translate-y-4 pointer-events-none"
           }`}
         >
-          <div className="relative flex justify-start gap-2 items-center px-2 py-2">
+          <div className="relative flex gap-8 items-center px-2 py-2">
             <div className="bg-gradient-to-r from-green-500 to-blue-500 sm:p-2 p-1 rounded-full hover:bg-slate-100 hover:text-slate-700  transistion-all duration-300 hover:scale-105 whitespace-nowrap font-bold w-full">
               <UserLogo dashboard={true} />
             </div>
@@ -61,15 +65,36 @@ function DashboardNavbar({ showBurgerMenu, setShowBurgerMenu }) {
               {name}
             </div>
           </div>
-          <button
-            className="flex items-center gap-2 px-2 py-2 text-gray-700 hover:bg-red-100 hover:text-red-700 rounded-xl transition-all duration-200 hover:scale-[1.02] ml-1 text-sm sm:text-lg w-full"
-            onClick={logout}
-          >
-            <div className="p-1">
-              <Logout />
-            </div>
-            <span className="pl-1">Logout</span>
-          </button>
+          <div className="flex flex-col gap-3">
+            {roleName === "Admin" &&
+              buttonLinks.map((val) => {
+                return (
+                  <button
+                    key={val}
+                    className={`flex items-center justify-between gap-2 px-2 py-2 w-full rounded-xl transition-all sm:text-base text-sm whitespace-nowrap ${
+                      activeLink === val
+                        ? "bg-black text-white"
+                        : "hover:bg-green-100 hover:text-green-700"
+                    }`}
+                    onClick={() => setActiveLink(val)}
+                  >
+                    <div className="p-1">
+                      <FontAwesomeIcon icon={buttonLogo[val]} />
+                    </div>
+                    {val}
+                  </button>
+                );
+              })}
+            <button
+              className="flex items-center justify-between gap-2 px-2 py-2 text-gray-700 hover:bg-red-100 hover:text-red-700 rounded-xl transition-all duration-200 hover:scale-[1.02] ml-1 text-sm sm:text-lg w-full"
+              onClick={logout}
+            >
+              <div className="">
+                <Logout />
+              </div>
+              <span className="pr-1">Logout</span>
+            </button>
+          </div>
         </div>
       </div>
       <div className="gap-8 items-center hidden sm:flex">

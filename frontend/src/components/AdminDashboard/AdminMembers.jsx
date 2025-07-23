@@ -67,11 +67,11 @@ function AdminMembers() {
     : [];
   return (
     <>
-      <div className="flex justify-between items-center m-5">
+      <div className="flex justify-between items-center md:m-5 mb-3">
         <select
           value={selectedStatus}
           onChange={(e) => setSelectedStatus(e.target.value)}
-          className="p-2 rounded-xl mx-16"
+          className="p-2 sm:rounded-xl md:mx-16 mx-2"
         >
           <option value="ALL">All</option>
           <option value="active">Active</option>
@@ -84,7 +84,7 @@ function AdminMembers() {
           name="searchbar"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 px-5 mr-16 rounded-2xl border border-slate-500"
+          className="w-full p-2 sm:px-5 md:mr-20 mr-2 sm:rounded-2xl text-sm border border-slate-500"
           placeholder="Search for name or phone"
         />
       </div>
@@ -93,7 +93,7 @@ function AdminMembers() {
           No Users Found
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-4 mx-16">
+        <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 md:mx-16 mx-2">
           {filteredUsers.map((val) => {
             const changeDate = new Date(val.dob).toLocaleDateString("en-US", {
               day: "2-digit",
@@ -104,10 +104,12 @@ function AdminMembers() {
             return (
               <div
                 key={val.name}
-                className="bg-white flex flex-col gap-3 w-full p-6"
+                className="bg-white flex flex-col gap-3 w-full mx:p-6 p-3 lg:text-base sm:text-sm text-xs"
               >
                 <div className="flex justify-between items-center">
-                  <div className="font-bold text-lg">{val.name}</div>
+                  <div className="font-bold md:text-lg xs:text-base text-xs">
+                    {val.name}
+                  </div>
                   <div
                     className={`font-monoserrat font-bold px-2 py-1 ${
                       val.payment_status === "active"
@@ -115,7 +117,7 @@ function AdminMembers() {
                         : val.status === "expiring"
                         ? "bg-yellow-300 text-yellow-800"
                         : "bg-red-300 text-red-800"
-                    }  text-lg`}
+                    }  md:text-lg xs:text-base text-xs`}
                   >
                     {val.payment_status[0].toUpperCase() +
                       val.payment_status.slice(1)}
@@ -125,16 +127,26 @@ function AdminMembers() {
                   <span className="text-black">Phone: </span>
                   {val.phone}
                 </div>
-                <div className="font-mono text-gray-700 flex justify-between">
-                  <span className="text-black">Email </span>
-                  {val.email}
+                <div className="font-mono text-gray-700 max-w-full flex items-center overflow-hidden justify-between">
+                  <span className="text-black">Email: </span>
+                  <span
+                    title={val.email}
+                    className=" truncate max-w-sm cursor-pointer"
+                  >
+                    {val.email}
+                  </span>
                 </div>
-                <div className="font-mono text-gray-700 flex justify-between">
+                <div className="font-mono text-gray-700 max-w-full flex items-center overflow-hidden justify-between">
                   <span className="text-black">Date of Birth: </span>
-                  {changeDate}
+                  <span
+                    title={changeDate}
+                    className=" truncate max-w-sm cursor-pointer"
+                  >
+                    {changeDate}
+                  </span>
                 </div>
                 <div className="font-mono text-gray-700 flex justify-between">
-                  <span className="text-black">Gender </span>
+                  <span className="text-black">Gender: </span>
                   {val.gender}
                 </div>
                 <div className="font-mono text-gray-700 flex justify-between">
