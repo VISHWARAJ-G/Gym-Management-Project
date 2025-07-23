@@ -5,7 +5,7 @@ dotenv.config();
 const resend = new Resend(process.env.RESEND_APIKEY);
 
 const sendVerificationEmail = async (email, verification_token) => {
-  const verificationLink = `http://localhost:5173/verify-email/${verification_token}`;
+  const verificationLink = `${process.env.FRONTEND_URL}/verify-email/${verification_token}`;
 
   try {
     const { error } = await resend.emails.send({
