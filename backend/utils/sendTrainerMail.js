@@ -3,17 +3,16 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
-  port: 587,
+  service: "gmail",
   auth: {
-    user: process.env.BREVO_USER,
-    pass: process.env.BREVO_PASS,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
 const sendTrainerEmail = async (email, name, trainerId, password) => {
   const mailOptions = {
-    from: `"Gym Admin" <${process.env.BREVO_USER}>`,
+    from: `"Gym Admin" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: "Your Trainer Credentials",
     html: `
