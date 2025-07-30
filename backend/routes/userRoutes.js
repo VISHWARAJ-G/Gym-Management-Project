@@ -174,7 +174,7 @@ router.post("/resend-email", async (req, res) => {
   }
 
   const { data: user, error } = await supabase
-    .from("users")
+    .from("inactive_users")
     .select("*")
     .eq("email", email)
     .single();
