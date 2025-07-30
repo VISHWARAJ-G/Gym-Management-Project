@@ -60,6 +60,8 @@ export const handleSubmit = async (
           setLoading(false);
           setErrorMsg("");
           setSignedUp(true);
+          const expiry = Date.now() + 60 * 1000;
+          localStorage.setItem("resendEmailExpiry", expiry.toString());
           navigate("/verify-page");
         } else {
           setSignupError(true);

@@ -4,7 +4,6 @@ import { toast, ToastContainer } from "react-toastify";
 function VerifyPage({ emailVal, setShowBurgerMenu }) {
   const [timeOut, setTimeOut] = useState(60);
   const [resend, setResend] = useState(false);
-
   useEffect(() => {
     const storedTime = localStorage.getItem("resendEmailExpiry");
     const now = Date.now();
@@ -45,7 +44,7 @@ function VerifyPage({ emailVal, setShowBurgerMenu }) {
       const data = await response.json();
       if (response.ok) {
         alert("Verification Email Resent");
-        const expiry = Date.now() + 60 * 1000; // 1 min later
+        expiry = Date.now() + 60 * 1000;
         localStorage.setItem("resendEmailExpiry", expiry.toString());
         setTimeOut(60);
         setResend(false);

@@ -10,7 +10,6 @@ const xlsx = require("xlsx");
 const generateRandomPassword = require("../utils/generatePassword");
 const sendTrainerEmail = require("../utils/sendTrainerMail");
 const PDFDocument = require("pdfkit");
-const fs = require("fs");
 const validator = require("validator");
 const disposableDomains = require("disposable-email-domains");
 const dns = require("dns/promises");
@@ -87,7 +86,7 @@ router.post("/signup-user", async (req, res) => {
   const verification_token = uuidv4();
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const { data, error } = await supabase.from("users").insert([
+  const { data, error } = await supabase.from("inactive_users").insert([
     {
       name,
       age,
@@ -121,7 +120,7 @@ router.get("/verify-email/:token", async (req, res) => {
   const { token } = req.params;
 
   const { data: user, error } = await supabase
-    .from("users")
+    .from("inactive_users")
     .select("*")
     .eq("verification_token", token)
     .single();
@@ -130,20 +129,40 @@ router.get("/verify-email/:token", async (req, res) => {
     return res.status(400).json({ message: "Invalid or Expired Token" });
   }
 
-  if (user.is_verified) {
-    return res.status(200).json({ message: "Already Verified" });
-  }
-
-  const { error: UpdateError } = await supabase
-    .from("users")
-    .update({
+  const { error: UpdateError } = await supabase.from("users").insert([
+    {
+      id: user.id,
+      name: user.name,
+      age: user.age,
+      gender: user.gender,
+      dob: user.dob,
+      address: user.address,
+      phone: user.phone,
+      email: user.email,
+      password: user.password,
+      status: "active",
       is_verified: true,
       verification_token: null,
-    })
-    .eq("id", user.id);
+      role: user.role,
+      payment_status: user.payment_status || "inactive",
+    },
+  ]);
+
   if (UpdateError) {
     return res.status(500).json({ message: "Failed to Verify" });
   }
+
+  const { error: deleteError } = await supabase
+    .from("inactive_users")
+    .delete()
+    .eq("id", user.id);
+
+  if (deleteError) {
+    return res.status(500).json({
+      message: "Failed to delete from Inactive Users Table.",
+    });
+  }
+
   return res.status(200).json({ message: "Email Verified" });
 });
 
@@ -886,7 +905,8 @@ router.patch("/update-users/:id", async (req, res) => {
     const { data: userData, err } = await supabase
       .from("users")
       .select("*")
-      .eq("id", id).single();
+      .eq("id", id)
+      .single();
     const payload = {
       id: userData.id,
       name: userData.name,

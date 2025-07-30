@@ -37,7 +37,7 @@ function Overlay() {
             with our comprehensive fitness management solution.
           </div>
         </div>
-        <div className="lg:mt-10 mt-5 flex lg:gap-10 lg:flex-row gap-5 flex-col">
+        <div className="lg:mt-10 mt-5 grid md:grid-cols-2 lg:text-xl text-sm lg:gap-10 gap-5">
           {servicesList.map((val) => {
             const LogoName = val.logo;
             return (
@@ -60,11 +60,11 @@ function Overlay() {
                   <LogoName dashboard={false} />
                 </div>
                 <div>
-                  <h1 className="font-bebas sm:text-2xl text-sm pt-3">
+                  <h1 className="font-bebas sm:text-2xl text-xl pt-3">
                     {val.name}
                   </h1>
                 </div>
-                <div className="max-w-[21rem] text-center tracking-wider sm:text-xl text-sm p-2 px-5">
+                <div className="max-w-[21rem] text-center tracking-wider lg:text-xl md:text-lg text-lg p-2 px-5">
                   <h1>{val.desc}</h1>
                 </div>
                 <div>
