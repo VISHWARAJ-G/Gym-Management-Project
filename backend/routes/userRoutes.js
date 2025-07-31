@@ -129,6 +129,15 @@ router.get("/verify-email/:token", async (req, res) => {
     return res.status(400).json({ message: "Invalid or Expired Token" });
   }
 
+  const { data: existingUser } = await supabase
+    .from("users")
+    .select("id")
+    .eq("email", user.email);
+
+  if (existingUser.length > 0) {
+    return res.status(409).json({ message: "Already verified." });
+  }
+
   const { error: UpdateError } = await supabase.from("users").insert([
     {
       id: user.id,
@@ -142,7 +151,6 @@ router.get("/verify-email/:token", async (req, res) => {
       password: user.password,
       status: "active",
       is_verified: true,
-      verification_token: null,
       role: user.role,
       payment_status: user.payment_status || "inactive",
     },

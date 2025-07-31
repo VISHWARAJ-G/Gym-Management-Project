@@ -21,9 +21,10 @@ function VerifyEmail() {
           setStatus("Success");
           setTimeout(() => {
             navigate("/login-user");
-          }, 5000);
+          }, 3000);
         } else {
           setStatus("Error");
+          console.log(data.UpdateError);
         }
       } catch (err) {
         toast.error("Verification Error:", err);
@@ -37,7 +38,9 @@ function VerifyEmail() {
       <ToastContainer autoClose={5000} position="top-right"></ToastContainer>
       <div className="flex justify-center pt-24">
         {status === "Verifying" && (
-          <div className="text-2xl font-bebas animate-pulse text-center">Loading...</div>
+          <div className="text-2xl font-bebas animate-pulse text-center">
+            Loading...
+          </div>
         )}
         {status === "Success" && (
           <div className="text-2xl font-bebas animate-pulse text-center">
