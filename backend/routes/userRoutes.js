@@ -12,38 +12,8 @@ const sendTrainerEmail = require("../utils/sendTrainerMail");
 const PDFDocument = require("pdfkit");
 const validator = require("validator");
 const disposableDomains = require("disposable-email-domains");
-const dns = require("dns/promises");
-const axios = require("axios");
 
 dotenv.config();
-
-async function isValidMX(email) {
-  const domain = email.split("@")[1];
-  try {
-    const records = await dns.resolveMx(domain);
-    return records && records.length > 0;
-  } catch (err) {
-    return false;
-  }
-}
-
-async function isInboxDeliverable(email) {
-  try {
-    const res = await axios.get(`https://apilayer.net/api/check`, {
-      params: {
-        access_key: process.env.MAILBOX_APIKEY,
-        email: email,
-        smtp: 1,
-        format: 1,
-      },
-    });
-
-    return res.data.smtp_check === true && res.data.format_valid === true;
-  } catch (err) {
-    console.error("Email API Error:", err.message);
-    return false;
-  }
-}
 
 router.post("/signup-user", async (req, res) => {
   const {
@@ -70,6 +40,12 @@ router.post("/signup-user", async (req, res) => {
       .json({ message: "Disposable email addresses are not allowed" });
   }
 
+  await supabase
+    .from("inactive_users")
+    .delete()
+    .eq("email", email)
+    .lt("token_expiry", new Date().toISOString());
+
   const { data: existingUser, error: findError } = await supabase
     .from("users")
     .select("email")
@@ -82,9 +58,21 @@ router.post("/signup-user", async (req, res) => {
       .status(500)
       .json({ message: "Error checking user", error: findError });
   }
+  
+  const { data: stillInactive } = await supabase
+    .from("inactive_users")
+    .select("email")
+    .eq("email", email);
+
+  if (stillInactive.length > 0) {
+    return res
+      .status(409)
+      .json({ message: "You already signed up. Please verify your email." });
+  }
 
   const verification_token = uuidv4();
   const hashedPassword = await bcrypt.hash(password, 10);
+  const token_expiry = new Date(Date.now() + 15 * 60 * 1000).toISOString();
 
   const { data, error } = await supabase.from("inactive_users").insert([
     {
@@ -99,6 +87,7 @@ router.post("/signup-user", async (req, res) => {
       role,
       is_verified: false,
       verification_token,
+      token_expiry,
     },
   ]);
   if (error) {
