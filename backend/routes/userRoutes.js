@@ -187,7 +187,7 @@ router.post("/resend-email", async (req, res) => {
   const newToken = uuidv4();
 
   const { error: updateError } = await supabase
-    .from("invalid_users")
+    .from("inactive_users")
     .update({ verification_token: newToken })
     .eq("id", user.id);
 
