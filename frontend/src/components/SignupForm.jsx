@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext, SignupContext } from "../context/Context.jsx";
 import validator from "validator";
 import disposableDomains from "disposable-email-domains";
+import { Eye, EyeOff } from "lucide-react";
 
 function SignupForm() {
   const navigate = useNavigate();
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [showCPassword, setShowCPassword] = useState(false);
   const { signupInfo, setSignupInfo } = useContext(SignupContext);
   const [signupError, setSignupError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -19,7 +21,7 @@ function SignupForm() {
     Object.keys(signupInfo).reduce((acc, key) => {
       acc[key] = false;
       return acc;
-    }, {})
+    }, {}),
   );
 
   const calculateAge = (dobString) => {
@@ -90,14 +92,17 @@ function SignupForm() {
       setSignupError,
       setErrorMsg,
       setLoading,
-      setSignedUp
+      setSignedUp,
     );
   };
   return (
     <form onSubmit={handleSubmission}>
-      <div className="grid xs:grid-cols-2 grid-cols-1 gap-7">
-        <div className="flex flex-col md:gap-4 gap-1" ref={fieldRef.name}>
-          <label htmlFor="Name" className="md:text-xl text-base font-bold">
+      <div className="grid xs:grid-cols-2 grid-cols-1 gap-5 font">
+        <div className="flex flex-col md:gap-2 gap-1" ref={fieldRef.name}>
+          <label
+            htmlFor="Name"
+            className="md:text-xl text-base font-bold text-gray-500"
+          >
             Full Name *
           </label>
           <input
@@ -106,7 +111,7 @@ function SignupForm() {
             name="name"
             value={signupInfo.name}
             onChange={change}
-            className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base lg:min-w-80 ${
+            className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base ${
               errors.name
                 ? "border-4 border-red-600 animate-pulse"
                 : "border-2 border-slate-400"
@@ -271,23 +276,39 @@ function SignupForm() {
             </div>
           )}
         </div>
-        <div className="flex flex-col md:gap-4 gap-1" ref={fieldRef.password}>
-          <label htmlFor="Password" className="md:text-xl text-base font-bold">
-            Password *
-          </label>
-          <input
-            type="password"
-            id="Password"
-            name="password"
-            value={signupInfo.password}
-            onChange={patternCheck}
-            className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base ${
-              errors.password
-                ? "border-4 border-red-600 animate-pulse"
-                : "border-2 border-slate-400"
-            }`}
-            placeholder="Create a password"
-          />
+        <div
+          className="flex flex-col md:gap-4 gap-1 w-full relative"
+          ref={fieldRef.password}
+        >
+          <div>
+            <label
+              htmlFor="Password"
+              className="md:text-xl text-base font-bold"
+            >
+              Password *
+            </label>
+          </div>
+          <div className="relative w-full">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="Password"
+              name="password"
+              value={signupInfo.password}
+              onChange={patternCheck}
+              className={`w-full focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base ${
+                errors.password
+                  ? "border-4 border-red-600 animate-pulse"
+                  : "border-2 border-slate-400"
+              }`}
+              placeholder="Create a password"
+            />
+          </div>
+          <div
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 md:top-[2.6rem] top-6  translate-y-1/2 cursor-pointer text-gray-600"
+          >
+            {showPassword ? <EyeOff size={24} /> : <Eye size={24} />}
+          </div>
           {errors.password && (
             <div>
               <h1 className="text-red-600 animate-pulse duration-75">
@@ -301,23 +322,34 @@ function SignupForm() {
             </div>
           )}
         </div>
-        <div className="flex flex-col md:gap-4 gap-1" ref={fieldRef.cpassword}>
+        <div
+          className="relative flex flex-col md:gap-4 gap-1"
+          ref={fieldRef.cpassword}
+        >
           <label htmlFor="CPassword" className="md:text-xl text-base font-bold">
             Confirm Password *
           </label>
-          <input
-            type="password"
-            id="CPassword"
-            name="cpassword"
-            value={signupInfo.cpassword}
-            onChange={handleConfirmPasswordChange}
-            className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base lg:min-w-80 ${
-              errors.cpassword
-                ? "border-4 border-red-600 animate-pulse"
-                : "border-2 border-slate-400"
-            }`}
-            placeholder="Confirm your password"
-          />
+          <div className="w-full">
+            <input
+              type={showCPassword ? "text" : "password"}
+              id="CPassword"
+              name="cpassword"
+              value={signupInfo.cpassword}
+              onChange={handleConfirmPasswordChange}
+              className={`focus:outline-2 focus:outline-yellow-600 p-1 px-2 md:text-xl text-base lg:min-w-80 ${
+                errors.cpassword
+                  ? "border-4 border-red-600 animate-pulse"
+                  : "border-2 border-slate-400"
+              }`}
+              placeholder="Confirm password"
+            />
+          </div>
+          <div
+            onClick={() => setShowCPassword((prev) => !prev)}
+            className="absolute right-3 md:top-[2.6rem] top-6 translate-y-1/2 cursor-pointer text-gray-600"
+          >
+            {showCPassword ? <EyeOff size={24} /> : <Eye size={24} />}
+          </div>
           {errors.cpassword && (
             <div>
               <h1 className="text-red-600 animate-pulse duration-75">

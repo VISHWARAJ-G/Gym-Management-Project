@@ -93,7 +93,7 @@ function LoginForm({ value }) {
         ) : null}
       </div>
       <div className="flex flex-col items-start w-full font-semibold">
-        <div className="mb-3 font-bold sm:text-xl text-bas">
+        <div className="mb-3 font-bold sm:text-xl text-base">
           <label htmlFor={labelFor}>{innerName}</label>
         </div>
         <input
