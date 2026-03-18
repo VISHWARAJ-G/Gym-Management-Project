@@ -33,7 +33,6 @@ function AdminMembers() {
         return;
       }
       setUsers(data.userTrainer);
-      console.log("data.userTrainer:", data.userTrainer);
     } catch (errors) {
       setError("Error " + errors);
     }
@@ -100,7 +99,6 @@ function AdminMembers() {
               month: "long",
               year: "numeric",
             });
-            console.log(val);
             return (
               <div
                 key={val.name}
@@ -154,18 +152,6 @@ function AdminMembers() {
                   {`${val.trainer_id} : ${val.trainer_name}`}
                 </div>
                 <div className="flex justify-center items-center gap-10">
-                  {/* <div>
-                    <button
-                      onClick={() => {
-                        setUsersDetails(val);
-                        console.log(val);
-                        setShowEdit(true);
-                      }}
-                      className="border-2 border-slate-400 hover:bg-blue-900 hover:text-white transition-all hover:border-none px-16 py-2 font-semibold rounded-xl"
-                    >
-                      Edit
-                    </button>
-                  </div> */}
                   <div>
                     <button
                       disabled={val.payment_status === "inactive"}

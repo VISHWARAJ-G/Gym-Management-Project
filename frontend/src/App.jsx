@@ -20,7 +20,6 @@ import AdminDashboard from "./pages/AdminDashboard.jsx";
 import PrivateTrainerRoute from "./routes/PrivateTrainerRoute.jsx";
 import TrainerDashboard from "./components/TrainerDashboard/TrainerDashboard.jsx";
 import PrivatePaymentGatewayRoute from "./routes/PrivatePaymentGatewayRoute.jsx";
-import PrivatePaymentCompleted from "./routes/PrivatePaymentCompleted.jsx";
 
 function App() {
   const { signupInfo } = useContext(SignupContext);

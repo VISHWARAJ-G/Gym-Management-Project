@@ -24,7 +24,7 @@ function VerifyEmail() {
           }, 3000);
         } else {
           setStatus("Error");
-          console.log(data.UpdateError);
+          console.error(data.UpdateError);
         }
       } catch (err) {
         toast.error("Verification Error:", err);

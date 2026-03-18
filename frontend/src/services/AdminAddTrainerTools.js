@@ -44,7 +44,7 @@ export const handleSubmitFunc = async (
         });
       } else {
         toast.error(data.message);
-        console.log(data.message);
+        console.error(data.message);
       }
     } catch (err) {
       console.error("Signup error:", err);

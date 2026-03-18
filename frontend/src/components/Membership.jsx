@@ -20,8 +20,6 @@ function Membership({ dashboard }) {
 
   if (loading) return null;
 
-  console.log(isUserLoggedin);
-
   const selectPlan = (e, plan) => {
     if (!isUserLoggedin) {
       navigate("/login-user");

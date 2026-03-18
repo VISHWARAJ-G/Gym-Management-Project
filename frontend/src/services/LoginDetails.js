@@ -45,7 +45,7 @@ export const userLoginMethod = async (
     }
   } catch (err) {
     setLoading(false);
-    console.log("User Login was errored", err);
+    console.log("User Login error", err);
     setMessage(err);
     setError(true);
   }
@@ -81,7 +81,6 @@ export const trainerLoginMethod = async (
       }),
     });
     const data = await response.json();
-    console.log(data);
 
     if (response.ok) {
       const trainerRole = data?.admin?.role || data?.trainer?.role;

@@ -7,7 +7,6 @@ function Welcome({ showBurgerMenu, setShowBurgerMenu }) {
   const decoded_token = jwtDecode(token);
   const { name, status } = decoded_token;
   const splitted_name = name.split(" ")[0];
-  console.log(splitted_name);
   return (
     <div
       className="lg:px-16 md:px-8 px-2 md:py-5 pt-24"
