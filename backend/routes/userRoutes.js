@@ -869,9 +869,18 @@ router.post("/signup-trainer", async (req, res) => {
       },
     ]);
     if (insertError) {
-      return res.status(500).json({ message: "Signup Failed", error });
+      console.error("Insert Error:", insertError);
+      return res
+        .status(500)
+        .json({ message: "Signup Failed", error: insertError });
     }
-    await sendTrainerEmail(email, name, nextTrainerId, password);
+
+    try {
+      await sendTrainerEmail(email, name, nextTrainerId, password);
+    } catch (mailErr) {
+      console.error("Email failed:", mailErr);
+    }
+
     return res.status(200).json({
       message: "Trainer Signed up Successfully",
       trainer_id: nextTrainerId,
