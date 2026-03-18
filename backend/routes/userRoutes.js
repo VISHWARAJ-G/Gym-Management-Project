@@ -58,7 +58,7 @@ router.post("/signup-user", async (req, res) => {
       .status(500)
       .json({ message: "Error checking user", error: findError });
   }
-  
+
   const { data: stillInactive } = await supabase
     .from("inactive_users")
     .select("email")
@@ -470,7 +470,7 @@ router.get("/payment-success", async (req, res) => {
       .from("subscribe")
       .select(
         `start_date,plans:plan_id (
-      plan_name,plan_amount,plan_duration_label)`
+      plan_name,plan_amount,plan_duration_label)`,
       )
       .eq("user_id", decoded_token.id)
       .single();
@@ -503,7 +503,7 @@ router.get("/paid-dashboard", async (req, res) => {
     const { data: paidUserDetails, error: findPaidUserError } = await supabase
       .from("subscribe")
       .select(
-        `start_date,end_date,status,plans:plan_id(plan_name,plan_amount), trainer:trainer_id(name,phone)`
+        `start_date,end_date,status,plans:plan_id(plan_name,plan_amount), trainer:trainer_id(name,phone)`,
       )
       .eq("user_id", decoded_token.id)
       .in("status", ["active", "expiring"])
@@ -587,7 +587,7 @@ router.get("/admin-details", async (req, res) => {
 
     const totalRevenue = data.reduce(
       (sum, entry) => sum + (entry.plan_id?.plan_amount || 0),
-      0
+      0,
     );
 
     return res.status(200).json({
@@ -626,7 +626,7 @@ router.get("/recent-activity", async (req, res) => {
         status,
         users:user_id(name),
         plans:plan_id(plan_name)
-      `
+      `,
       )
       .order("created_at", { ascending: false })
       .limit(3);
@@ -667,11 +667,11 @@ router.get("/download-users", async (req, res) => {
     const buffer = xlsx.write(workbook, { type: "buffer", book: "xlsx" });
     res.setHeader(
       "Content-Disposition",
-      "attachment; filename = UsersList.xlsx"
+      "attachment; filename = UsersList.xlsx",
     );
     res.setHeader(
       "Content-Type",
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     );
     res.send(buffer);
   } catch (err) {
@@ -709,11 +709,11 @@ router.get("/download-trainers", async (req, res) => {
     const buffer = xlsx.write(workbook, { type: "buffer", book: "xlsx" });
     res.setHeader(
       "Content-Disposition",
-      "attachment; filename = TrainersList.xlsx"
+      "attachment; filename = TrainersList.xlsx",
     );
     res.setHeader(
       "Content-Type",
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     );
     res.send(buffer);
   } catch (err) {
@@ -837,13 +837,20 @@ router.post("/signup-trainer", async (req, res) => {
       throw new Error("Failed to fetch last trainer_id: " + error.message);
     }
     let nextNumber = 1;
-    if (data.length > 0) {
+
+    if (data && data.length > 0 && data[0].trainer_id) {
       const lastId = data[0].trainer_id;
-      const lastNumber = parseInt(lastId.replace("TR", ""));
-      nextNumber = lastNumber + 1;
+
+      const numberPart = lastId.replace("TR", "");
+      const lastNumber = Number(numberPart);
+
+      if (!isNaN(lastNumber)) {
+        nextNumber = lastNumber + 1;
+      }
     }
-    const nextTrainerId = `TR${nextNumber.toString().padStart(3, "0")}`;
-    const password = generateRandomPassword();
+
+    const nextTrainerId = `TR${String(nextNumber).padStart(3, "0")}`;
+    const password = nextTrainerId;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -1252,7 +1259,7 @@ router.get("/download-pdf/:id", async (req, res) => {
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader(
       "Content-Disposition",
-      `attachment; filename=${user.name.replace(" ", "_")}_profile.pdf`
+      `attachment; filename=${user.name.replace(" ", "_")}_profile.pdf`,
     );
 
     const doc = new PDFDocument({ margin: 50 });
