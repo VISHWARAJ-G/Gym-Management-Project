@@ -1,4 +1,4 @@
-# Gym Management System
+# EvolveGym - A Gym Management System
 
 ## Introduction
 
@@ -12,18 +12,18 @@ This system provides a role-based platform where different users can access spec
 
 ### User Roles
 
-* **Admin** – Manages members, trainers, plans, and billing
-* **Trainer** – Manages assigned clients and tracks progress
-* **Member** – Views plans, trainer details, and billing history
+- **Admin** – Manages members, trainers, plans, and billing
+- **Trainer** – Manages assigned clients and tracks progress
+- **Member** – Views plans, trainer details, and billing history
 
 ---
 
 ## Objectives
 
-* To build a responsive and modern gym management system
-* To implement secure authentication and role-based access
-* To simplify trainer assignment and plan management
-* To provide a user-friendly interface for all roles
+- To build a responsive and modern gym management system
+- To implement secure authentication and role-based access
+- To simplify trainer assignment and plan management
+- To provide a user-friendly interface for all roles
 
 ---
 
@@ -31,28 +31,28 @@ This system provides a role-based platform where different users can access spec
 
 ### Authentication
 
-* Secure login and signup
-* JWT-based authentication
-* Email verification system
+- Secure login and signup
+- JWT-based authentication
+- Email verification system
 
 ### Admin Features
 
-* Manage users and trainers
-* Assign trainers to members
-* Manage subscription plans
-* View billing details
+- Manage users and trainers
+- Assign trainers to members
+- Manage subscription plans
+- View billing details
 
 ### Trainer Features
 
-* View assigned members
-* Track progress
-* Access member plans
+- View assigned members
+- Track progress
+- Access member plans
 
 ### Member Features
 
-* View assigned trainer
-* Access billing history
-* Manage personal plans
+- View assigned trainer
+- Access billing history
+- Manage personal plans
 
 ---
 
@@ -60,17 +60,17 @@ This system provides a role-based platform where different users can access spec
 
 ### Frontend
 
-* React.js (Vite)
-* Tailwind CSS
+- React.js (Vite)
+- Tailwind CSS
 
 ### Backend
 
-* Node.js
-* Express.js
+- Node.js
+- Express.js
 
 ### Database
 
-* Supabase (PostgreSQL)
+- Supabase (PostgreSQL)
 
 ---
 
@@ -78,9 +78,9 @@ This system provides a role-based platform where different users can access spec
 
 The application follows a client-server architecture:
 
-* Frontend handles UI and user interaction
-* Backend processes API requests and business logic
-* Database stores user, trainer, plan, and billing data
+- Frontend handles UI and user interaction
+- Backend processes API requests and business logic
+- Database stores user, trainer, plan, and billing data
 
 ---
 
@@ -166,38 +166,38 @@ node server.js
 
 ## Testing and Debugging
 
-* Manual testing across devices and browsers
-* API testing using Postman
-* Debugging using browser console and logs
+- Manual testing across devices and browsers
+- API testing using Postman
+- Debugging using browser console and logs
 
 ---
 
 ## Challenges Faced
 
-* Email verification delays
-* Token expiration handling
-* Complex database queries
-* Responsive UI adjustments
+- Email verification delays
+- Token expiration handling
+- Complex database queries
+- Responsive UI adjustments
 
 ---
 
 ## Future Scope
 
-* Mobile application development
-* Payment gateway integration
-* Advanced analytics dashboard
-* Notification system
-* Attendance tracking
+- Mobile application development
+- Payment gateway integration
+- Advanced analytics dashboard
+- Notification system
+- Attendance tracking
 
 ---
 
 ## Learnings
 
-* Full-stack development workflow
-* UI/UX design principles
-* API integration
-* Debugging and testing
-* Team collaboration
+- Full-stack development workflow
+- UI/UX design principles
+- API integration
+- Debugging and testing
+- Team collaboration
 
 ---
 
@@ -209,11 +209,11 @@ The Gym Management System successfully demonstrates a complete full-stack applic
 
 ## References
 
-* https://react.dev
-* https://tailwindcss.com
-* https://supabase.com
-* https://nodejs.org
-* https://postgresql.org
+- https://react.dev
+- https://tailwindcss.com
+- https://supabase.com
+- https://nodejs.org
+- https://postgresql.org
 
 ---
 
