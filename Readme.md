@@ -221,12 +221,12 @@ The Gym Management System successfully demonstrates a complete full-stack applic
 
 ## 👥 Team & Contributions
 
-- **Vishwaraj G** – Full Stack Development
+- **[Vishwaraj G](https://github.com/VISHWARAJ-G)** – Full Stack Development
   - Led frontend and backend development  
   - Integrated APIs and database (Supabase)  
   - Managed overall system functionality  
 
-- **Dineshkarthik N** – UI/UX Design & Database Management
+- **[Dineshkarthik N](https://github.com/dinesh2068)** – UI/UX Design & Database Management
   - Designed intuitive and user-friendly UI/UX layouts, improving overall user experience and navigation
   - Developed and optimized database schema for efficient data storage, retrieval, and scalability
   - Integrated frontend designs with backend database systems to ensure seamless functionality
