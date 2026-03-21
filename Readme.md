@@ -10,17 +10,7 @@ The Gym Management System is a full-stack web application developed to digitize 
 
 This system provides a role-based platform where different users can access specific functionalities based on their roles.
 
-## 👥 Team & Contributions
-
-- **Vishwaraj G** – Full Stack Development
-  - Led frontend and backend development  
-  - Integrated APIs and database (Supabase)  
-  - Managed overall system functionality  
-
-- **Dineshkarthik N** – UI/UX Design & Database Management
-  - Designed intuitive and user-friendly UI/UX layouts, improving overall user experience and navigation
-  - Developed and optimized database schema for efficient data storage, retrieval, and scalability
-  - Integrated frontend designs with backend database systems to ensure seamless functionality
+---
 
 ### User Roles
 
@@ -229,10 +219,16 @@ The Gym Management System successfully demonstrates a complete full-stack applic
 
 ---
 
-## Author
+## 👥 Team & Contributions
 
-- **Vishwaraj G** - Full Stack Developer
-  - Github: https://github.com/VISHWARAJ-G
+- **Vishwaraj G** – Full Stack Development
+  - Led frontend and backend development  
+  - Integrated APIs and database (Supabase)  
+  - Managed overall system functionality  
 
-- **Dineshkarthik N** - UI/UX Design & Database Management
-  - Github: https://github.com/dinesh2068
+- **Dineshkarthik N** – UI/UX Design & Database Management
+  - Designed intuitive and user-friendly UI/UX layouts, improving overall user experience and navigation
+  - Developed and optimized database schema for efficient data storage, retrieval, and scalability
+  - Integrated frontend designs with backend database systems to ensure seamless functionality
+
+---
