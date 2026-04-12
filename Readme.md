@@ -219,7 +219,7 @@ The Gym Management System successfully demonstrates a complete full-stack applic
 
 ---
 
-## 👥 Team & Contributions
+## Team & Contributions
 
 - **[Vishwaraj G](https://github.com/VISHWARAJ-G)** – Full Stack Development
   - Led frontend and backend development  
